@@ -1,24 +1,77 @@
-# README
+# User
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| nickname | string | null:false |
+| email | string | null:false |
+| password | string | null:false |
 
-Things you may want to cover:
+# Association
+- has_many :circles, through :user_circles
+- has_many :user_circles
+- has_many :reports
+- has_many :events
+- has_many :comments
 
-* Ruby version
+# Circle
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| name | string | null:false |
+| description | text | null:false |
+| genre_id | integer | null:false |
+| activity_id | integer | null:false |
+| age_range_id | integer | null:false |
+| prefecture_id | integer | null:false |
 
-* System dependencies
+# Association
+- has_many :users, through :user_circles
+- has_many :user_circles
+- has_many :reports
+- has_many :events
 
-* Configuration
+# UserCircle
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| user | references | null:false, foreign_key: true |
+| circle | references | null:false, foreign_key: true |
 
-* Database creation
+# Association
+- belongs_to :user
+- belongs_to :circle
 
-* Database initialization
+# Report
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| title | string | null:false |
+| content | text | null:false |
+| user | references | null:false, foreign_key: true |
+| circle | references | null:false, foreign_key: true |
 
-* How to run the test suite
+# Association
+- belongs_to :user
+- belongs_to :circle
 
-* Services (job queues, cache servers, search engines, etc.)
+# Event
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| title | string | null:false |
+| body | text | null:false |
+| start_date | datetime | null:false |
+| end_date | datetime | null:false |
+| user | references | null:false, foreign_key: true |
+| circle | references | null:false, foreign_key: true |
 
-* Deployment instructions
+# Association
+- belongs_to :user
+- belongs_to :circle
 
-* ...
+# Comment
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| content | text | null:false |
+| user | references | null:false, foreign_key: true |
+| event | references | null:false, foreign_key: true |
+
+# Association
+- belongs_to :user
+- belongs_to :event
