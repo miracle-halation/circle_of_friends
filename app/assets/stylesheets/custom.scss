@@ -1,0 +1,21 @@
+@import "bootstrap";
+
+body{
+	background-color: aqua;
+	a{
+		font-style: none;
+		color: black;
+	}
+}
+
+#left-navbar{
+	font-size: large;
+}
+
+.right-container{
+	display: flex;
+	p{
+		padding: 10px 20px 0;
+		font-size: large;
+	}
+}
