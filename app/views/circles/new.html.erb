@@ -1,0 +1,57 @@
+<div class='account-page' id='account-page'>
+  <div class='account-page__inner clearfix'>
+    <div class='account-page__inner--left account-page__header'>
+      <h2>Create Circle</h2>
+      <h5>サークルを立ち上げる</h5>
+    </div>
+    <div class='account-page__inner--right user-form'>
+      <%= form_with model: @circle, local: true do |f| %>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :name%>
+          </div>
+          <div class='field-input'>
+            <%= f.text_field :name, autofocus: true%>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :description %>
+          </div>
+          <div class='field-input'>
+            <%= f.text_area :description, class:"form-control" %>
+          </div>
+        </div>
+        <div class='field'>
+          <div class='field-label'>
+            <%= f.label :genre_id %>
+          </div>
+          <div class='field-input'>
+            <%= f.collection_select(:genre_id, Genre.all, :id, :name, {}, {class:"form-control"}) %>
+          </div>
+					<div class='field-label'>
+            <%= f.label :activity_id %>
+          </div>
+          <div class='field-input'>
+            <%= f.collection_select(:activity_id, Activity.all, :id, :name, {}, {class:"form-control"}) %>
+          </div>
+					<div class='field-label'>
+            <%= f.label :age_range_id %>
+          </div>
+          <div class='field-input'>
+            <%= f.collection_select(:age_range_id, AgeRange.all, :id, :name, {}, {class:"form-control"}) %>
+          </div>
+					<div class='field-label'>
+            <%= f.label :prefecture_id %>
+          </div>
+          <div class='field-input'>
+            <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"form-control"}) %>
+          </div>
+        </div>
+        <div class='actions'>
+          <%= f.submit "Create Account", class: 'btn'%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
