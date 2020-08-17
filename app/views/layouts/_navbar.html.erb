@@ -3,11 +3,20 @@
 		<%= link_to "CircleOfFriends", root_path %>
 	</div>
 	<div class="right-container">
-		<p>
-			<%= link_to "ログイン", new_user_session_path %>
-		</p>
-		<p>
-			<%= link_to "新規登録", new_user_registration_path %>
-		</p>
+		<% if signed_in? %>
+			<p>
+				<%= current_user.nickname %>
+			</p>
+			<p>
+				<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+			</p>
+		<% else %>
+			<p>
+				<%= link_to "ログイン", new_user_session_path %>
+			</p>
+			<p>
+				<%= link_to "新規登録", new_user_registration_path %>
+			</p>
+		<% end %>
 	</div>
 </nav>
