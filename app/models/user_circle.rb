@@ -1,0 +1,2 @@
+class UserCircle < ApplicationRecord
+end
