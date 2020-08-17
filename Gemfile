@@ -25,6 +25,7 @@ gem 'pry-rails'
 gem 'devise'
 gem 'bootstrap'
 gem 'jquery-rails'
+gem 'active_hash'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
