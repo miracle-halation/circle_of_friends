@@ -9,7 +9,6 @@ class CirclesController < ApplicationController
 
 	def create
 		@circle = Circle.new(circle_params)
-		binding.pry
 		if @circle.save
 			flash[:success] = "Create circle"
 			redirect_to root_path
