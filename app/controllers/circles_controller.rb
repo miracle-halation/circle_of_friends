@@ -1,6 +1,6 @@
 class CirclesController < ApplicationController
   before_action :sign_in_user?, only: [:new, :edit]
-  before_action :set_circle, only: [:show, :edit, :update]
+  before_action :set_circle, only: [:show, :edit, :update, :destroy]
   before_action :leader?, only: [:edit]
 
   def index
@@ -36,6 +36,8 @@ class CirclesController < ApplicationController
   end
 
   def destroy
+    @circle.destroy
+    redirect_to root_path
   end
 
   private

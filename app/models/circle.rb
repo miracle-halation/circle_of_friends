@@ -1,6 +1,6 @@
 class Circle < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_many :user_circles
+  has_many :user_circles, dependent: :destroy
   has_many :users, through: :user_circles
   belongs_to_active_hash :genre
   belongs_to_active_hash :activity
