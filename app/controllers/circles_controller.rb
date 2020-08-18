@@ -1,6 +1,6 @@
 class CirclesController < ApplicationController
   before_action :sign_in_user?, only: [:new]
-  before_action :set_circle, only: [:show, :edit]
+  before_action :set_circle, only: [:show, :edit, :update]
 
   def index
     @circles = Circle.all.order(created_at: 'DESC')
@@ -27,6 +27,11 @@ class CirclesController < ApplicationController
   end
 
   def update
+    if @circle.update(circle_params)
+      redirect_to circle_path(@circle)
+    else
+      render :edit
+    end
   end
 
   def destroy
