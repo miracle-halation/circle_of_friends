@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nickname, presence: true
   has_many :user_circles
-	has_many :circles, through: :user_circles
+  has_many :circles, through: :user_circles
 end
