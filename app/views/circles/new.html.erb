@@ -48,7 +48,7 @@
           <div class='field-input'>
             <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"form-control"}) %>
           </div>
-          <%= f.hidden_field :user_ids, :value => current_user.id %>
+          <%= f.hidden_field :leader, :value => current_user.id %>
         </div>
         <div class='actions'>
           <%= f.submit "Create Account", class: 'btn'%>
