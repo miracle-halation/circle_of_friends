@@ -9,5 +9,6 @@ class Circle < ApplicationRecord
 		validates :activity_id, numericality: { other_than: 1 }
 		validates :age_range_id, numericality: { other_than: 1 }
 		validates :prefecture_id, numericality: { other_than: 1 }
+		validates :leader
 	end
 end
