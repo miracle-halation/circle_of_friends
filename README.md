@@ -22,6 +22,7 @@
 | activity_id | integer | null:false |
 | age_range_id | integer | null:false |
 | prefecture_id | integer | null:false |
+| leader | integer | null:false |
 
 # Association
 - has_many :users, through :user_circles
