@@ -2,6 +2,7 @@ class CirclesController < ApplicationController
   before_action :sign_in_user?, only: [:new]
 
   def index
+    @circles = Circle.all.order(created_at: "DESC")
   end
 
   def new
