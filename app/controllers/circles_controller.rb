@@ -3,7 +3,7 @@ class CirclesController < ApplicationController
   before_action :set_circle, only: [:show]
 
   def index
-    @circles = Circle.all.order(created_at: "DESC")
+    @circles = Circle.all.order(created_at: 'DESC')
   end
 
   def new

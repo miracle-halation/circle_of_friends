@@ -35,24 +35,24 @@ RSpec.describe 'Circles', type: :system do
     end
   end
 
-  describe "サークル一覧" do
-    let(:user_circle){ FactoryBot.create(:user_circle)}
+  describe 'サークル一覧' do
+    let(:user_circle) { FactoryBot.create(:user_circle) }
     before do
       login(user_circle.user)
     end
 
-    it "トップページにサークル名が表示されている" do
+    it 'トップページにサークル名が表示されている' do
       expect(page).to have_content user_circle.circle.name
     end
   end
 
-  describe "サークル詳細" do
-    let(:user_circle){ FactoryBot.create(:user_circle)}
+  describe 'サークル詳細' do
+    let(:user_circle) { FactoryBot.create(:user_circle) }
     before do
       login(user_circle.user)
     end
 
-    it "新規登録の時に登録した情報が全て表示されている" do
+    it '新規登録の時に登録した情報が全て表示されている' do
       visit circle_path(user_circle.circle)
       expect(page).to have_content user_circle.circle.name
       expect(page).to have_content user_circle.circle.description
