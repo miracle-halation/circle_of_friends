@@ -1,6 +1,6 @@
 class CirclesController < ApplicationController
   before_action :sign_in_user?, only: [:new]
-  before_action :set_circle, only: [:show]
+  before_action :set_circle, only: [:show, :edit]
 
   def index
     @circles = Circle.all.order(created_at: 'DESC')
@@ -21,6 +21,15 @@ class CirclesController < ApplicationController
 
   def show
     @users = User.find(@circle.user_ids)
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
   end
 
   private
