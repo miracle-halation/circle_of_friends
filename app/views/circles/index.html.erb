@@ -4,6 +4,15 @@
 			<h1>Circle Of Friends</h1>
 		</div>
 	</div>
+	<h3>サークル一覧</h3>
+	<div class="d-flex flex-column bd-highlight mb-3">
+		<% @circles.each do |circle| %>
+		<div class="p-2 bd-highlight circle-list">
+			<%= link_to circle.name, circle_path(circle) %>
+			<p>活動頻度:<%= circle.activity.name %></p>
+		</div>
+		<% end %>
+	</div>
 	<div class="row justify-content-md-center">
 		<div class="col-md-3">
 			<%= link_to "早速立ち上げる", new_circle_path, class: "btn btn-primary btn-lg active" %>

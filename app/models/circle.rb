@@ -1,6 +1,11 @@
 class Circle < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :user_circles
   has_many :users, through: :user_circles
+  belongs_to_active_hash :genre
+  belongs_to_active_hash :activity
+  belongs_to_active_hash :age_range
+  belongs_to_active_hash :prefecture
 
   with_options presence: true do
     validates :name

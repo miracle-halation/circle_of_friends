@@ -1,0 +1,25 @@
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="display-4"><%= @circle.name %></h1>
+		<p class="lead"><%= @circle.description %></p>
+		<hr class="my-4">
+		<% if signed_in? && current_user.id == @circle.leader %>
+			<%= link_to "編集", "#", class: "btn btn-primary btn-lg" %>
+			<%= link_to "削除", "#", class: "btn btn-secondary btn-lg" %>
+			<%= link_to "招待", "#", class: "btn btn-primary btn-lg" %>
+		<% end %>
+	</div>
+	 <h2>サークル情報</h2>
+	<ul class="list-group">
+		<li class="list-group-item">ジャンル：<%= @circle.genre.name %></li>
+		<li class="list-group-item">活動頻度：<%= @circle.activity.name %></li>
+		<li class="list-group-item">年齢層：<%= @circle.age_range.name %></li>
+		<li class="list-group-item">活動県：<%= @circle.prefecture.name %></li>
+	</ul>
+	<h2>所属しているユーザー</h2>
+	<ul class="list-group list-group-flush">
+		<% @users.each do |user| %>
+			<li class="list-group-item"><%= user.nickname %></li>
+		<% end %>
+	</ul>
+</div>
