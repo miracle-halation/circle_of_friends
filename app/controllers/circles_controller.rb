@@ -1,6 +1,7 @@
 class CirclesController < ApplicationController
-  before_action :sign_in_user?, only: [:new, :edit]
+  before_action :sign_in_user?, only: [:new, :edit, :joing, :withdrawal]
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
+  before_action :set_users, only: [:new, :edit, :create, :update]
   before_action :leader_user?, only: [:edit]
 
   def index
@@ -43,11 +44,31 @@ class CirclesController < ApplicationController
     end
   end
 
+  def joing
+    @circle = Circle.find(params[:circle_id])
+    if @circle.users.include?(current_user)
+      redirect_to root_path
+    else
+      @circle.invite(current_user)
+      redirect_to circle_path(@circle)
+    end
+  end
+
+  def withdrawal
+    @circle = Circle.find(params[:circle_id])
+    if @circle.leader_user == current_user
+      redirect_to circle_path(@circle)
+    else
+      @circle.withdrawal(current_user)
+      redirect_to root_path
+    end
+  end
+
   private
 
   def circle_params
     params.require(:circle)
-          .permit(:name, :description, :genre_id, :activity_id, :age_range_id, :prefecture_id, :leader, :user_ids)
+          .permit(:name, :description, :genre_id, :activity_id, :age_range_id, :prefecture_id, :leader, user_ids: [])
           .merge(leader_user: current_user)
   end
 
@@ -57,6 +78,10 @@ class CirclesController < ApplicationController
 
   def set_circle
     @circle = Circle.find(params[:id])
+  end
+
+  def set_users
+    @users = User.where.not(id: current_user.id)
   end
 
   def leader_user?

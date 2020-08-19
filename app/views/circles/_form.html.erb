@@ -42,7 +42,13 @@
 			<div class='field-input'>
 				<%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"form-control"}) %>
 			</div>
-			<%= f.hidden_field :user_ids, :value => current_user.id %>
+			<div class="row">
+				<%= f.collection_check_boxes(:user_ids, @users, :id, :nickname) do |b| %>
+					<div class="col user_index">
+						<%= b.label { b.check_box + b.text } %>
+					</div>
+				<% end %>
+			</div>
 		</div>
 		<div class='actions'>
 			<%= f.submit yield(:send_title), class: 'btn'%>
