@@ -1,7 +1,7 @@
 class CirclesController < ApplicationController
   before_action :sign_in_user?, only: [:new, :edit]
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
-  
+  before_action :leader_user?, only: [:edit]
 
   def index
     @circles = Circle.all.order(created_at: 'DESC')
@@ -54,6 +54,10 @@ class CirclesController < ApplicationController
 
   def set_circle
     @circle = Circle.find(params[:id])
+  end
+
+  def leader_user?
+    redirect_to root_path unless @circle.leader_user == current_user
   end
 
 end
