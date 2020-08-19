@@ -48,10 +48,19 @@ class CirclesController < ApplicationController
     @circle = Circle.find(params[:circle_id])
     unless @circle.users.include?(current_user)
       @circle.invite(current_user)
-      flash[:info] = "ようこそ！"
       redirect_to circle_path(@circle)
     else
       redirect_to root_path
+    end
+  end
+
+  def withdrawal
+    @circle = Circle.find(params[:circle_id])
+    unless @circle.leader_user == current_user
+      @circle.withdrawal(current_user)
+      redirect_to root_path
+    else
+      redirect_to circle_path(@circle)
     end
   end
 

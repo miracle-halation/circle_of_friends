@@ -22,6 +22,10 @@ class Circle < ApplicationRecord
     users << other_users
   end
 
+  def withdrawal(other_user)
+    users.delete(other_user)
+  end
+
   private
 
   def should_not_destroy

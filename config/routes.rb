@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "circles#index"
   resources :circles do
     get "joing"
+    get "withdrawal"
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
