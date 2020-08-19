@@ -36,8 +36,11 @@ class CirclesController < ApplicationController
   end
 
   def destroy
-    @circle.destroy
-    redirect_to root_path
+    if @circle.destroy
+      redirect_to root_path
+    else
+      render :show
+    end
   end
 
   private

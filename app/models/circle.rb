@@ -17,4 +17,10 @@ class Circle < ApplicationRecord
     validates :age_range_id, numericality: { other_than: 1 }
     validates :prefecture_id, numericality: { other_than: 1 }
   end
+
+  private
+
+  def should_not_destroy
+    return throw :abort unless leader_user == current_user
+  end
 end
