@@ -1,5 +1,5 @@
 class CirclesController < ApplicationController
-  before_action :sign_in_user?, only: [:new, :edit]
+  before_action :sign_in_user?, only: [:new, :edit, :joing, :withdrawal]
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
   before_action :leader_user?, only: [:edit]
 
