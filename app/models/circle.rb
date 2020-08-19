@@ -18,6 +18,10 @@ class Circle < ApplicationRecord
     validates :prefecture_id, numericality: { other_than: 1 }
   end
 
+  def invite(other_users)
+    users << other_users
+  end
+
   private
 
   def should_not_destroy

@@ -25,6 +25,7 @@ class CirclesController < ApplicationController
   end
 
   def edit
+    @users = User.includes(:circles).where.not(id: @circle.leader_user.id)
   end
 
   def update
@@ -43,16 +44,11 @@ class CirclesController < ApplicationController
     end
   end
 
-  def invite
-    @circle = Circle.find(params[:circle_id])
-    @users = User.includes(:circles).where.not(id: @circle.leader_user.id)
-  end
-
   private
 
   def circle_params
     params.require(:circle)
-          .permit(:name, :description, :genre_id, :activity_id, :age_range_id, :prefecture_id, :leader, :user_ids)
+          .permit(:name, :description, :genre_id, :activity_id, :age_range_id, :prefecture_id, :leader, user_ids: [])
           .merge(leader_user: current_user)
   end
 
