@@ -43,6 +43,11 @@ class CirclesController < ApplicationController
     end
   end
 
+  def invite
+    @circle = Circle.find(params[:circle_id])
+    @users = User.includes(:circles).where.not(id: @circle.leader_user.id)
+  end
+
   private
 
   def circle_params

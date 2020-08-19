@@ -1,0 +1,21 @@
+<div class="container">
+	<div class="jumbotron">
+		<h1 class="display-4">ユーザーを招待する</h1>
+		<hr class="my-4">
+		<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    </form>
+	</div>
+	<div class="row">
+		<%= form_with model: @circle do |f| %>
+			<%= f.collection_check_boxes(:user_ids, @users, :id, :nickname) do |b| %>
+				<div class="col user_index">
+					<%= b.label { b.check_box + b.text } %>
+				</div>
+			<% end %>
+			<div class="col">
+				<%= f.submit "招待", class:"btn btn-info"%>
+			</div>
+		<% end %>
+	</div>
+</div>
