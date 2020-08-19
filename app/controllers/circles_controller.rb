@@ -1,7 +1,7 @@
 class CirclesController < ApplicationController
   before_action :sign_in_user?, only: [:new, :edit]
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
-  before_action :leader?, only: [:edit]
+  
 
   def index
     @circles = Circle.all.order(created_at: 'DESC')
@@ -45,6 +45,7 @@ class CirclesController < ApplicationController
   def circle_params
     params.require(:circle)
           .permit(:name, :description, :genre_id, :activity_id, :age_range_id, :prefecture_id, :leader, :user_ids)
+          .merge(leader_user: current_user)
   end
 
   def sign_in_user?
@@ -55,7 +56,4 @@ class CirclesController < ApplicationController
     @circle = Circle.find(params[:id])
   end
 
-  def leader?
-    return redirect_to root_path unless current_user.id == @circle.leader
-  end
 end
