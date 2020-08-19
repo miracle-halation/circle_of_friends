@@ -124,56 +124,56 @@ RSpec.describe 'Circles', type: :system do
     end
   end
 
-  describe "加入機能" do
+  describe '加入機能' do
     let(:user_circle) { FactoryBot.create(:user_circle) }
-    context "失敗する時" do
-      it "ログインしていないとログインページに遷移する" do
+    context '失敗する時' do
+      it 'ログインしていないとログインページに遷移する' do
         visit circle_joing_path(user_circle.circle)
         expect(current_path).to eq new_user_session_path
       end
-      it "すでに加入していれば、トップページに遷移する" do
+      it 'すでに加入していれば、トップページに遷移する' do
         login(user)
         user_circle.circle.users << user
         visit circle_joing_path(user_circle.circle)
         expect(current_path).to eq root_path
       end
     end
-    context "成功する時" do
-      it "詳細ページから加入すると押すと加入して詳細ページへ遷移する" do
+    context '成功する時' do
+      it '詳細ページから加入すると押すと加入して詳細ページへ遷移する' do
         login(user)
         visit circle_path(user_circle.circle)
         expect do
-          click_on "加入"
+          click_on '加入'
           sleep(1)
-        end.to change {user_circle.circle.users.count}.by(1)
+        end.to change { user_circle.circle.users.count }.by(1)
         expect(page).to have_content user.nickname
-        expect(page).to have_content "退会"
+        expect(page).to have_content '退会'
       end
     end
   end
 
-  describe "退会機能" do
+  describe '退会機能' do
     let(:user_circle) { FactoryBot.create(:user_circle) }
-    context "失敗する時" do
-      it "ログインしていないとログインページに遷移する" do
+    context '失敗する時' do
+      it 'ログインしていないとログインページに遷移する' do
         visit circle_withdrawal_path(user_circle.circle)
         expect(current_path).to eq new_user_session_path
       end
-      it "加入していない状態だとトップページに遷移する" do
+      it '加入していない状態だとトップページに遷移する' do
         login(user)
         visit circle_withdrawal_path(user_circle.circle)
         expect(current_path).to eq root_path
       end
     end
-    context "成功する時" do
-      it "詳細ページから退会を押すとトップページに遷移する" do
+    context '成功する時' do
+      it '詳細ページから退会を押すとトップページに遷移する' do
         login(user)
         user_circle.circle.users << user
         visit circle_path(user_circle.circle)
         expect do
-          click_on "退会"
+          click_on '退会'
           sleep(1)
-        end.to change {user_circle.circle.users.count}.by(-1)
+        end.to change { user_circle.circle.users.count }.by(-1)
         expect(current_path).to eq root_path
       end
     end

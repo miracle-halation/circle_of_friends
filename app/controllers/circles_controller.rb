@@ -46,21 +46,21 @@ class CirclesController < ApplicationController
 
   def joing
     @circle = Circle.find(params[:circle_id])
-    unless @circle.users.include?(current_user)
+    if @circle.users.include?(current_user)
+      redirect_to root_path
+    else
       @circle.invite(current_user)
       redirect_to circle_path(@circle)
-    else
-      redirect_to root_path
     end
   end
 
   def withdrawal
     @circle = Circle.find(params[:circle_id])
-    unless @circle.leader_user == current_user
+    if @circle.leader_user == current_user
+      redirect_to circle_path(@circle)
+    else
       @circle.withdrawal(current_user)
       redirect_to root_path
-    else
-      redirect_to circle_path(@circle)
     end
   end
 
