@@ -1,6 +1,7 @@
 class CirclesController < ApplicationController
   before_action :sign_in_user?, only: [:new, :edit, :joing, :withdrawal]
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
+  before_action :set_users, only: [:new, :edit, :create, :update]
   before_action :leader_user?, only: [:edit]
 
   def index
@@ -25,7 +26,6 @@ class CirclesController < ApplicationController
   end
 
   def edit
-    @users = User.includes(:circles).where.not(id: @circle.leader_user.id)
   end
 
   def update
@@ -78,6 +78,10 @@ class CirclesController < ApplicationController
 
   def set_circle
     @circle = Circle.find(params[:id])
+  end
+
+  def set_users
+    @users = User.where.not(id: current_user.id)
   end
 
   def leader_user?
