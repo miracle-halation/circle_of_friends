@@ -63,23 +63,23 @@ RSpec.describe 'Circles', type: :system do
     end
   end
 
-  describe "サークル編集" do
+  describe 'サークル編集' do
     let(:user_circle) { FactoryBot.create(:user_circle) }
-    
-    context "失敗する時" do
-      it "ログインしていないとログインページへ遷移する" do
+
+    context '失敗する時' do
+      it 'ログインしていないとログインページへ遷移する' do
         visit edit_circle_path(user_circle.circle)
         expect(current_path).to eq new_user_session_path
       end
 
-      it "ログインしているユーザーがリーダーでないとトップページに遷移する" do
+      it 'ログインしているユーザーがリーダーでないとトップページに遷移する' do
         login(user_circle.user)
         user_circle.circle.leader_user = user
         visit edit_circle_path(user_circle.circle)
         expect(current_path).to eq root_path
       end
 
-      it "値が正しくないと更新できない" do
+      it '値が正しくないと更新できない' do
         login(user_circle.user)
         user_circle.circle.leader_user = user_circle.user
         visit edit_circle_path(user_circle.circle)
@@ -90,8 +90,8 @@ RSpec.describe 'Circles', type: :system do
         expect(page).to have_content "Name can't be blank"
       end
     end
-    context "成功する時" do
-      it "ログインしているユーザーがリーダーかつ値が正しいと更新できる" do
+    context '成功する時' do
+      it 'ログインしているユーザーがリーダーかつ値が正しいと更新できる' do
         login(user_circle.user)
         user_circle.circle.leader_user = user_circle.user
         visit edit_circle_path(user_circle.circle)
@@ -105,14 +105,14 @@ RSpec.describe 'Circles', type: :system do
     end
   end
 
-  describe "削除機能" do
+  describe '削除機能' do
     let(:user_circle) { FactoryBot.create(:user_circle) }
     before do
       login(user_circle.user)
       user_circle.circle.leader_user = user_circle.user
     end
 
-    it "リーダーであるなら削除ボタンがあり、サークルを削除してトップページに遷移する" do
+    it 'リーダーであるなら削除ボタンがあり、サークルを削除してトップページに遷移する' do
       visit circle_path(user_circle.circle)
       expect do
         find_link('削除', href: circle_path(user_circle.circle)).click

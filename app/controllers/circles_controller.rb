@@ -62,5 +62,4 @@ class CirclesController < ApplicationController
   def leader_user?
     redirect_to root_path unless @circle.leader_user == current_user
   end
-
 end

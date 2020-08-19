@@ -2,7 +2,7 @@ class Circle < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_many :user_circles, dependent: :destroy
   has_many :users, through: :user_circles
-  has_one :leader_circle_user, -> {where(leader: true)}, class_name: "UserCircle"
+  has_one :leader_circle_user, -> { where(leader: true) }, class_name: 'UserCircle'
   has_one :leader_user, through: :leader_circle_user, source: :user
   belongs_to_active_hash :genre
   belongs_to_active_hash :activity
