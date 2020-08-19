@@ -3,9 +3,9 @@
 		<h1 class="display-4"><%= @circle.name %></h1>
 		<p class="lead"><%= @circle.description %></p>
 		<hr class="my-4">
-		<% if signed_in? && current_user.id == @circle.leader %>
-			<%= link_to "編集", "#", class: "btn btn-primary btn-lg" %>
-			<%= link_to "削除", "#", class: "btn btn-secondary btn-lg" %>
+		<% if signed_in? && @circle.leader_user == current_user %>
+			<%= link_to "編集", edit_circle_path(@circle), class: "btn btn-primary btn-lg" %>
+			<%= link_to "削除", circle_path, method: :delete, data: {confirm: "本当に削除しますか？"} ,class: "btn btn-secondary btn-lg" %>
 			<%= link_to "招待", "#", class: "btn btn-primary btn-lg" %>
 		<% end %>
 	</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_020954) do
+ActiveRecord::Schema.define(version: 2020_08_19_022654) do
 
   create_table "circles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_08_18_020954) do
     t.integer "prefecture_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "leader", null: false
   end
 
   create_table "user_circles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -29,6 +28,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_020954) do
     t.bigint "circle_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "leader", default: false, null: false
     t.index ["circle_id"], name: "index_user_circles_on_circle_id"
     t.index ["user_id"], name: "index_user_circles_on_user_id"
   end

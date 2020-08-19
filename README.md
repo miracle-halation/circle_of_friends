@@ -22,7 +22,6 @@
 | activity_id | integer | null:false |
 | age_range_id | integer | null:false |
 | prefecture_id | integer | null:false |
-| leader | integer | null:false |
 
 # Association
 - has_many :users, through :user_circles
@@ -35,6 +34,7 @@
 | ------ | ---- | ------- |
 | user | references | null:false, foreign_key: true |
 | circle | references | null:false, foreign_key: true |
+| leader | boolean | default:false, null:false |
 
 # Association
 - belongs_to :user
