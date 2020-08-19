@@ -44,6 +44,17 @@ class CirclesController < ApplicationController
     end
   end
 
+  def joing
+    @circle = Circle.find(params[:circle_id])
+    unless @circle.users.include?(current_user)
+      @circle.invite(current_user)
+      flash[:info] = "ようこそ！"
+      redirect_to circle_path(@circle)
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def circle_params
