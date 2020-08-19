@@ -62,4 +62,20 @@ RSpec.describe 'Circles', type: :system do
       expect(page).to have_content user_circle.circle.prefecture.name
     end
   end
+
+  describe "サークル編集" do
+    let(:user_circle) { FactoryBot.create(:user_circle) }
+    
+    context "失敗する時" do
+      it "ログインしていないとログインページへ遷移する" do
+        visit edit_circle_path(user_circle.circle)
+        expect(current_path).to eq new_user_session_path
+      end
+
+      
+    end
+    context "成功する時" do
+      
+    end
+  end
 end
