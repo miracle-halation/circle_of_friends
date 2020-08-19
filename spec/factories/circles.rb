@@ -6,6 +6,5 @@ FactoryBot.define do
     activity_id       { 2 }
     age_range_id      { 2 }
     prefecture_id     { 2 }
-    leader            { 1 }
   end
 end
