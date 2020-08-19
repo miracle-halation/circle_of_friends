@@ -59,11 +59,6 @@ RSpec.describe Circle, type: :model do
         circle.valid?
         expect(circle.errors.full_messages).to include('Prefecture must be other than 1')
       end
-      it 'leaderが空だと登録できない' do
-        circle.leader = nil
-        circle.valid?
-        expect(circle.errors.full_messages).to include("Leader can't be blank")
-      end
     end
   end
 end
