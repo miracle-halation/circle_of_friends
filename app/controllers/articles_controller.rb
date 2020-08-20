@@ -1,14 +1,16 @@
 class ArticlesController < ApplicationController
 	before_action :sign_in_user?, only: [:new]
+	before_action :set_circle, only: [:new, :show, :create]
 	before_action :circle_user?, only: [:new]
-	before_action :set_circle, only: [:new, :create]
 	def new
-		@circle = Circle.find(params[:circle_id])
 		@article = @circle.articles.new()
 	end
 
+	def show
+		@article = Article.find(params[:id])
+	end
+
 	def create
-		@circle = Circle.find(params[:circle_id])
 		@article = @circle.articles.new(article_params)
 		if @article.save
 			redirect_to circle_path(@circle)
@@ -28,7 +30,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def circle_user?
-		return redirect_to root_path @circle.users.include?(current_user)
+		return redirect_to root_path unless @circle.users.include?(current_user)
 	end
 
 	def set_circle
