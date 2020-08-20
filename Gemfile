@@ -27,6 +27,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'active_hash'
 gem 'actiontext'
+gem 'react-rails'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
