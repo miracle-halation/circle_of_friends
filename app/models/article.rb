@@ -4,5 +4,10 @@ class Article < ApplicationRecord
 	has_rich_text :content
 	has_one_attached :image
 
-	validates :title, presence: true
+	with_options presence: true do
+		validates :title
+		validates :content
+	end
+	
+	
 end
