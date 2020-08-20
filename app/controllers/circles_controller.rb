@@ -23,6 +23,7 @@ class CirclesController < ApplicationController
 
   def show
     @users = User.find(@circle.user_ids)
+    @articles = @circle.articles.includes(:article)
   end
 
   def edit
@@ -62,6 +63,11 @@ class CirclesController < ApplicationController
       @circle.withdrawal(current_user)
       redirect_to root_path
     end
+  end
+
+  def article
+    @circle = Circle.find(params[:circle_id])
+		@article = @circle.articles.new()
   end
 
   private

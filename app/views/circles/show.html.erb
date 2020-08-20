@@ -24,5 +24,11 @@
 			<li class="list-group-item"><%= user.nickname %></li>
 		<% end %>
 	</ul>
-	<h2>活動日誌:<span class="article-index"><%= link_to "日誌一覧", circle_articles_path(@circle) %></span></h2>
+	<h2>活動日誌</h2>
+	<%= link_to "新規作成", circle_article_path(@circle), class:"btn btn-primary" %>
+	<div class="text-center">
+  	<% @articles.each do |article| %>
+			<%= link_to article.title, circle_article_path(article) %>
+		<% end %>
+	</div>
 </div>
