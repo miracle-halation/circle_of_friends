@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+	before_action :sign_in_user?, only: [:new]
+	before_action :circle_user?, only: [:new]
+	before_action :set_circle, only: [:new, :create]
 	def new
 		@circle = Circle.find(params[:circle_id])
 		@article = @circle.articles.new()
@@ -18,6 +21,18 @@ class ArticlesController < ApplicationController
 
 	def article_params
 		params.require(:article).permit(:title, :image, :content).merge(user_id: current_user.id, circle_id: params[:circle_id])
+	end
+
+	def sign_in_user?
+    return redirect_to new_user_session_path unless signed_in?
+	end
+
+	def circle_user?
+		return redirect_to root_path @circle.users.include?(current_user)
+	end
+
+	def set_circle
+		@circle = Circle.find(params[:circle_id])
 	end
 
 end
