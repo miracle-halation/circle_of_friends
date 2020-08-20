@@ -1,8 +1,6 @@
 <div class="container">
-	<div class="jumbotron">
-		<h1 class="display-4"><%= @circle.name %></h1>
-		<p class="lead"><%= @circle.description %></p>
-		<hr class="my-4">
+	<%= render "circle_head", circle: @circle %>
+	<div class="link-field">
 		<% if signed_in? && @circle.leader_user == current_user %>
 			<%= link_to "編集", edit_circle_path(@circle), class: "btn btn-primary btn-lg" %>
 			<%= link_to "削除", circle_path, method: :delete, data: {confirm: "本当に削除しますか？"} ,class: "btn btn-secondary btn-lg" %>
