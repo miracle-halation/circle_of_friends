@@ -9,7 +9,7 @@
 # Association
 - has_many :circles, through :user_circles
 - has_many :user_circles
-- has_many :reports
+- has_many :articles
 - has_many :events
 - has_many :comments
 
@@ -26,7 +26,7 @@
 # Association
 - has_many :users, through :user_circles
 - has_many :user_circles
-- has_many :reports
+- has_many :articles
 - has_many :events
 
 # UserCircle
@@ -40,7 +40,7 @@
 - belongs_to :user
 - belongs_to :circle
 
-# Report
+# Article
 | Column | Type | Options |
 | ------ | ---- | ------- |
 | title | string | null:false |
