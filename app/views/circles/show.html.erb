@@ -25,10 +25,10 @@
 		<% end %>
 	</ul>
 	<h2>活動日誌</h2>
-	<%= link_to "新規作成", circle_article_path(@circle), class:"btn btn-primary" %>
+	<%= link_to "新規作成", new_circle_article_path(@circle), class:"btn btn-primary" %>
 	<div class="text-center">
   	<% @articles.each do |article| %>
-			<%= link_to article.title, circle_article_path(article) %>
+			<%= link_to article.title, circle_article_path(@circle, article) %>
 		<% end %>
 	</div>
 </div>

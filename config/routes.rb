@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   resources :circles do
     get "joing"
     get "withdrawal"
-    get "article"
+    resources :articles, only: [:new, :show, :create]
   end
-  resources :articles, only: [:new, :show, :edit, :create, :update, :destroy]
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
