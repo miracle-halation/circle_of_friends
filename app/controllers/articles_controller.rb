@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 	def index
-		@articles = Circle.includes(articles)
+		@circle = Circle.find(params[:circle_id])
+		@articles = @circle.articles.includes(:article)
 	end
 
 	def new
