@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   before_action :sign_in_user?
   before_action :set_circle
   before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :circle_user?, only: [:new, :edit]
+  before_action :circle_user?, only: [:new]
   before_action :create_user?, only: [:edit, :update, :destroy]
   def new
     @article = @circle.articles.new
@@ -16,7 +16,8 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to circle_path(@circle)
     else
-      render :new
+      redirect_to new_circle_article_path(@circle)
+      flash.now[:alert] = "作成に失敗しました"
     end
   end
 
@@ -27,7 +28,8 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       redirect_to circle_article_path(@circle, @article)
     else
-      render :edit
+      redirect_to edit_circle_article_path(@circle, @article)
+      flash.now[:alert] = "編集に失敗しました"
     end
   end
 
@@ -35,7 +37,7 @@ class ArticlesController < ApplicationController
     if @article.destroy
       redirect_to circle_path(@circle)
     else
-      render :show
+      render circle_article_path(@circle, @article)
     end
   end
 

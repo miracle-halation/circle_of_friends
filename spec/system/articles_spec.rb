@@ -53,4 +53,52 @@ RSpec.describe 'Articles', type: :system do
       expect(page).to have_selector "img[src$='test_image.jpg']"
     end
   end
+
+  describe '記事編集機能' do
+    context '失敗する場合' do
+      it 'ログインしていないとログインページへ遷移する' do
+        visit edit_circle_article_path(article.circle, article)
+        expect(current_path).to eq new_user_session_path
+      end
+
+      it '作成した本人でないとトップページへ遷移する' do
+        login(user_circle.user)
+        visit edit_circle_article_path(article.circle, article)
+        expect(current_path).to eq root_path
+      end
+
+      it '入力値が正しくないと更新できない' do
+        login(article.user)
+        visit edit_circle_article_path(article.circle, article)
+        fill_in 'article[title]', with: ''
+        fill_in_rich_text_area 'article_content', with: ''
+        expect do
+          find("input[name='commit']").click
+        end.to change { Article.count }.by(0)
+        expect(current_path).to eq edit_circle_article_path(article.circle, article)
+      end
+    end
+    context '成功する場合' do
+      it '入力値が正しいと編集できる' do
+        login(article.user)
+        visit edit_circle_article_path(article.circle, article)
+        fill_in 'article[title]', with: 'update_title'
+        fill_in_rich_text_area 'article_content', with: 'update_content'
+        expect do
+          find("input[name='commit']").click
+        end.to change { Article.count }.by(0)
+        expect(page).to have_content 'update_title'
+        expect(page).to have_content 'update_content'
+      end
+    end
+  end
+
+  describe '記事削除機能' do
+    context '失敗する場合' do
+      
+    end
+    context '成功する場合' do
+      
+    end
+  end
 end

@@ -1,6 +1,7 @@
 <div class="container">
 	<%= render "circles/circle_head", circle: circle %>
 	<%= form_with model: [circle, article] do |f| %>
+		<%= render "/shared/error_message", model: f.object %>
 		<div class="form-group">
 			<%= f.label :title %>
 			<%= f.text_field :title, class:"form-control", id:"exampleFormControlInput1", placeholder:"タイトルを入力してください" %>
