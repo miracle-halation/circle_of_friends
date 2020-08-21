@@ -1,1 +1,12 @@
-<%= image_tag @article.image if @article.image.present? %>
+<div class="container">
+  <div class="jumbotron">
+		<h1 class="display-4"><%= @article.title %></h1>
+		<%= image_tag @article.image, class:"article-img" if @article.image.present? %>
+	</div>
+	<div class="row justify-content-md-center">
+		<%= @article.content %>
+	</div>
+	<div class="row justify-content-md-center">
+		<%= link_to "戻る", circle_path(@circle), class:"btn btn-primary" %>
+	</div>
+</div>

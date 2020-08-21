@@ -53,3 +53,9 @@ body{
 	height: 300px;
 	overflow: scroll;
 }
+
+.article-img{
+  height: 500px;
+  width: 500px;
+  object-fit: contain;
+}
