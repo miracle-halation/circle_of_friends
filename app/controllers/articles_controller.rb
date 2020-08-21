@@ -24,6 +24,11 @@ class ArticlesController < ApplicationController
   end
 
   def update
+    if @article.update(article_params)
+      redirect_to circle_article_path(@circle, @article)
+    else
+      render :edit
+    end
   end
 
   def destroy
