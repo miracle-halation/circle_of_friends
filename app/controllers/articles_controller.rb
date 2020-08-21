@@ -1,9 +1,9 @@
 class ArticlesController < ApplicationController
   before_action :sign_in_user?, only: [:new, :edit]
   before_action :set_circle
-  before_action :set_article, only: [:show, :edit, :update, :destory]
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :circle_user?, only: [:new, :edit]
-  before_action :create_user?, only: [:edit, :update, :destory]
+  before_action :create_user?, only: [:edit, :update, :destroy]
   def new
     @article = @circle.articles.new
   end
@@ -32,6 +32,11 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
+    if @article.destroy
+      redirect_to circle_path(@circle)
+    else
+      render :show
+    end
   end
 
   private
