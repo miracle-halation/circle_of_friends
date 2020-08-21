@@ -26,9 +26,9 @@
 	</ul>
 	<h2>活動日誌</h2>
 	<%= link_to "新規作成", new_circle_article_path(@circle), class:"btn btn-primary" %>
-	<div class="text-center">
+	<ul class="list-group">
   	<% @articles.each do |article| %>
-			<%= link_to article.title, circle_article_path(@circle, article) %>
+			<li class="list-group-item"><%= link_to article.title, circle_article_path(@circle, article) %></li>
 		<% end %>
-	</div>
+	</ul>
 </div>
