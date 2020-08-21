@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :sign_in_user?, only: [:new, :edit]
+  before_action :sign_in_user?
   before_action :set_circle
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :circle_user?, only: [:new, :edit]

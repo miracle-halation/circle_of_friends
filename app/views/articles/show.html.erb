@@ -3,8 +3,10 @@
 		<h1 class="display-4"><%= @article.title %></h1>
 		<%= image_tag @article.image, class:"article-img" if @article.image.present? %>
 		<hr class="my-4">
-		<%= link_to "編集", edit_circle_article_path(@circle, @article), class:"btn btn-primary" %>
-		<%= link_to "削除", circle_article_path(@circle, @article), method: :delete, class:"btn btn-primary" %>
+		<% if @article.user == current_user %>
+			<%= link_to "編集", edit_circle_article_path(@circle, @article), class:"btn btn-primary" %>
+			<%= link_to "削除", circle_article_path(@circle, @article), method: :delete, class:"btn btn-primary" %>
+		<% end %>
 	</div>
 	<div class="row justify-content-md-center">
 		<%= @article.content %>
