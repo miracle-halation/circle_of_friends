@@ -8,16 +8,17 @@ body{
 	}
 }
 
-#left-navbar{
+.nav-item{
+	color: white;
+	margin-top: 10px;
 	font-size: large;
+	a{
+		color: white;
+	}
 }
 
-.right-container{
-	display: flex;
-	p{
-		padding: 10px 20px 0;
-		font-size: large;
-	}
+#left-navbar{
+	font-size: large;
 }
 
 .circle-list{
@@ -58,4 +59,15 @@ body{
   height: 500px;
   width: 500px;
   object-fit: contain;
+}
+
+.user-avatar{
+	border-radius: 50%;
+	height: 100px;
+	width: 100px;
+}
+
+.circle-img{
+	height: 200px;
+	width: 200px;
 }
