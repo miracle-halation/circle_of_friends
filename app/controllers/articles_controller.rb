@@ -17,7 +17,7 @@ class ArticlesController < ApplicationController
       redirect_to circle_path(@circle)
     else
       redirect_to new_circle_article_path(@circle)
-      flash.now[:alert] = "作成に失敗しました"
+      flash.now[:alert] = '作成に失敗しました'
     end
   end
 
@@ -29,7 +29,7 @@ class ArticlesController < ApplicationController
       redirect_to circle_article_path(@circle, @article)
     else
       redirect_to edit_circle_article_path(@circle, @article)
-      flash.now[:alert] = "編集に失敗しました"
+      flash.now[:alert] = '編集に失敗しました'
     end
   end
 

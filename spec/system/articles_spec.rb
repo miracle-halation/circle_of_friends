@@ -95,10 +95,8 @@ RSpec.describe 'Articles', type: :system do
 
   describe '記事削除機能' do
     context '失敗する場合' do
-      
     end
     context '成功する場合' do
-      
     end
   end
 end
