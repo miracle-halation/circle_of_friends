@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Articles", type: :system do
   let!(:user_circle) { FactoryBot.create(:user_circle) }
+  let!(:article){FactoryBot.create(:article)}
 
   describe "新規記事作成" do
     context "失敗する時" do
@@ -41,6 +42,15 @@ RSpec.describe "Articles", type: :system do
         end.to change {Article.count}.by(1)
         expect(current_path).to eq circle_path(user_circle.circle)
       end
+    end
+  end
+
+  describe "記事詳細ページ" do
+    it "投稿した記事の内容が正しく表示されている" do
+      login(article.user)
+      visit circle_article_path(article.circle,article)
+      expect(page).to have_content article.title
+      expect(page).to have_selector ("img[src$='test_image.jpg']")
     end
   end
 
