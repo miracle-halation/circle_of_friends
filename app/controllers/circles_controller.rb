@@ -22,7 +22,8 @@ class CirclesController < ApplicationController
   end
 
   def show
-    @users = User.find(@circle.user_ids)
+    @users = @circle.users
+    @articles = @circle.articles
   end
 
   def edit

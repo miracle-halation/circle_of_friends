@@ -29,3 +29,27 @@ body{
 .user_index{
 	font-size: x-large;
 }
+
+.link-field{
+	width: 100%;
+	height: 60px;
+	background-color: azure;
+	a{
+		margin: 5px;
+	}
+}
+
+.article-index{
+	a{
+		color: blue;
+	}
+}
+
+.text-center{
+	margin: 10px;
+}
+
+.article-content{
+	height: 300px;
+	overflow: scroll;
+}

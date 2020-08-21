@@ -1,8 +1,6 @@
 <div class="container">
-	<div class="jumbotron">
-		<h1 class="display-4"><%= @circle.name %></h1>
-		<p class="lead"><%= @circle.description %></p>
-		<hr class="my-4">
+	<%= render "circle_head", circle: @circle %>
+	<div class="link-field">
 		<% if signed_in? && @circle.leader_user == current_user %>
 			<%= link_to "編集", edit_circle_path(@circle), class: "btn btn-primary btn-lg" %>
 			<%= link_to "削除", circle_path, method: :delete, data: {confirm: "本当に削除しますか？"} ,class: "btn btn-secondary btn-lg" %>
@@ -26,4 +24,11 @@
 			<li class="list-group-item"><%= user.nickname %></li>
 		<% end %>
 	</ul>
+	<h2>活動日誌</h2>
+	<%= link_to "新規作成", new_circle_article_path(@circle), class:"btn btn-primary" %>
+	<div class="text-center">
+  	<% @articles.each do |article| %>
+			<%= link_to article.title, circle_article_path(@circle, article) %>
+		<% end %>
+	</div>
 </div>
