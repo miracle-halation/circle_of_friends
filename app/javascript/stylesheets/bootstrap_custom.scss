@@ -1,4 +1,4 @@
-@import "bootstrap";
+@import "~bootstrap/scss/bootstrap";
 
 body{
 	background-color: aqua;
@@ -8,16 +8,17 @@ body{
 	}
 }
 
-#left-navbar{
-	font-size: large;
-}
-
 .right-container{
 	display: flex;
 	p{
 		padding: 10px 20px 0;
 		font-size: large;
 	}
+}
+
+
+#left-navbar{
+	font-size: large;
 }
 
 .circle-list{
@@ -58,4 +59,15 @@ body{
   height: 500px;
   width: 500px;
   object-fit: contain;
+}
+
+.user-avatar{
+	border-radius: 50%;
+	height: 100px;
+	width: 100px;
+}
+
+.circle-img{
+	height: 200px;
+	width: 200px;
 }

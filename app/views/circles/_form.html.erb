@@ -1,6 +1,8 @@
 <div class='account-page__inner--right user-form'>
 	<%= form_with model: circle, local: true do |f| %>
 		<%= render "/shared/error_message", model: f.object %>
+		<%= f.file_field :image, class: "form_image" %>
+		<img class="prev-content" style="width:100px;height:100px;">
 		<div class='field'>
 			<div class='field-label'>
 				<%= f.label :name%>

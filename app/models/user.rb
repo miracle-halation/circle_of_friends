@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :user_circles
   has_many :circles, through: :user_circles
   has_many :articles
+  has_one_attached :avatar
 end

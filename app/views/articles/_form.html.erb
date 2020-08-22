@@ -6,7 +6,8 @@
 			<%= f.label :title %>
 			<%= f.text_field :title, class:"form-control", id:"exampleFormControlInput1", placeholder:"タイトルを入力してください" %>
 		</div>
-		<%= f.file_field :image %>
+		<%= f.file_field :image, class: "form_image" %>
+		<img class="prev-content" style="width:300px;height:300px;">
 		<div class="form-group">
 			<%= f.label :content %>
 			<%= f.rich_text_area :content, class:"form-control article-content" %>

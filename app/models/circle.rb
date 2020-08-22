@@ -5,6 +5,7 @@ class Circle < ApplicationRecord
   has_many :articles
   has_one :leader_circle_user, -> { where(leader: true) }, class_name: 'UserCircle'
   has_one :leader_user, through: :leader_circle_user, source: :user
+  has_one_attached :image
   belongs_to_active_hash :genre
   belongs_to_active_hash :activity
   belongs_to_active_hash :age_range
