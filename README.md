@@ -59,7 +59,6 @@
 | body | text | null:false |
 | start_date | datetime | null:false |
 | end_date | datetime | null:false |
-| user | references | null:false, foreign_key: true |
 | circle | references | null:false, foreign_key: true |
 
 # Association
