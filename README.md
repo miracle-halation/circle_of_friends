@@ -10,7 +10,8 @@
 - has_many :circles, through :user_circles
 - has_many :user_circles
 - has_many :articles
-- has_many :events
+- has_many :events, through :user_events
+- has_many :user_events
 - has_many :comments
 
 # Circle
@@ -62,8 +63,19 @@
 | circle | references | null:false, foreign_key: true |
 
 # Association
-- belongs_to :user
+- has_many :users, through :user_events
+- has_many :user_events
 - belongs_to :circle
+
+# UserEvent
+| Column | Type | Options |
+| ------ | ---- | ------- |
+| user | references | null:false, foreign_key: true |
+| event | references | null:false, foreign_key: true |
+
+# Association
+- belongs_to :user
+- belongs_to :event
 
 # Comment
 | Column | Type | Options |
