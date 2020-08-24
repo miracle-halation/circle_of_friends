@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_23_145815) do
+ActiveRecord::Schema.define(version: 2020_08_24_101059) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_08_23_145815) do
     t.bigint "circle_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "author", default: false, null: false
     t.index ["circle_id"], name: "index_user_events_on_circle_id"
     t.index ["user_id"], name: "index_user_events_on_user_id"
   end
