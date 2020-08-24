@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
 	before_action :set_circle
+	before_action :ser_event, only: [:show]
 	def new
 		@event = @circle.events.new()
 	end
@@ -14,6 +15,7 @@ class EventsController < ApplicationController
 	end
 
 	def show
+		@users = @circle.users
 	end
 
 	def edit
@@ -28,10 +30,14 @@ class EventsController < ApplicationController
 	private
 
 	def event_params
-		params.require(:event).permit(:title, :body, :start_time, :end_time, :circle_id, user_ids:[])
+		params.require(:event).permit(:title, :body, :start_time, :end_time, :circle_id)
 	end
 
 	def set_circle
     @circle = Circle.find(params[:circle_id])
-  end
+	end
+	
+	def ser_event
+		@event = Event.find(params[:id])
+	end
 end

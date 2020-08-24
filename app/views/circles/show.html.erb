@@ -39,7 +39,7 @@
 
 		<% events.each do |event| %>
 			<div>
-				<%= event.title %>
+				<%= link_to event.title, circle_event_path(@circle,event) %>
 			</div>
 		<% end %>
 	<% end %>

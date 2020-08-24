@@ -83,7 +83,7 @@ class CirclesController < ApplicationController
   end
 
   def set_users
-    @users = User.where.not(id: current_user.id)
+    @users = User.where.not(id: current_user)
   end
 
   def leader_user?
