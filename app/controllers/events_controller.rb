@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
+	before_action :set_circle
 	def new
+		@event = @circle.events.new()
 	end
 
 	def create
@@ -16,4 +18,10 @@ class EventsController < ApplicationController
 
 	def destroy
 	end
+
+	private
+
+	def set_circle
+    @circle = Circle.find(params[:circle_id])
+  end
 end
