@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
 	before_action :set_circle
-	before_action :ser_event, only: [:show]
+	before_action :ser_event, only: [:show, :edit, :update]
 	def new
 		@event = @circle.events.new()
 	end
@@ -22,6 +22,11 @@ class EventsController < ApplicationController
 	end
 
 	def update
+		if @event.update(event_params)
+			redirect_to circle_event_path(@circle, @event)
+		else
+			render :edit
+		end
 	end
 
 	def destroy
