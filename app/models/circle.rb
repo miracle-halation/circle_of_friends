@@ -3,6 +3,7 @@ class Circle < ApplicationRecord
   has_many :user_circles, dependent: :destroy
   has_many :users, through: :user_circles
   has_many :articles
+  has_many :events
   has_one :leader_circle_user, -> { where(leader: true) }, class_name: 'UserCircle'
   has_one :leader_user, through: :leader_circle_user, source: :user
   has_one_attached :image
