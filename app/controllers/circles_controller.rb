@@ -24,6 +24,7 @@ class CirclesController < ApplicationController
   def show
     @users = @circle.users
     @articles = @circle.articles
+    @events = @circle.events
   end
 
   def edit
