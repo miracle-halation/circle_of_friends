@@ -71,3 +71,11 @@ body{
 	height: 200px;
 	width: 200px;
 }
+
+.calendar-heading{
+	display: flex;
+	justify-content: space-between;
+	span{
+		font-size: x-large;
+	}
+}

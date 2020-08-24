@@ -31,13 +31,13 @@
 			<li class="list-group-item"><%= link_to article.title, circle_article_path(@circle, article) %></li>
 		<% end %>
 	</ul>
-
+	<br>
 	<%= month_calendar events: @events do |date, events| %>
 		<%= date %>
 
 		<% events.each do |event| %>
 			<div>
-				<%= event.name %>
+				<%= event.title %>
 			</div>
 		<% end %>
 	<% end %>
