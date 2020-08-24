@@ -3,6 +3,7 @@ class EventsController < ApplicationController
 	before_action :set_circle
 	before_action :ser_event, only: [:show, :edit, :update]
 	before_action :circle_user?
+	before_action :leader_user?, only: [:edit]
 
 	def new
 		@event = @circle.events.new()
@@ -32,8 +33,6 @@ class EventsController < ApplicationController
 		end
 	end
 
-	def destroy
-	end
 
 	private
 
@@ -56,5 +55,9 @@ class EventsController < ApplicationController
 
 	def circle_user?
     return redirect_to root_path unless @circle.users.include?(current_user)
+	end
+	
+	def leader_user?
+    redirect_to root_path unless @circle.leader_user == current_user
   end
 end
