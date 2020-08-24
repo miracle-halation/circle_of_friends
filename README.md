@@ -71,7 +71,6 @@
 | ------ | ---- | ------- |
 | user | references | null:false, foreign_key: true |
 | event | references | null:false, foreign_key: true |
-| author | boolean | default:false, null:false |
 
 # Association
 - belongs_to :user
