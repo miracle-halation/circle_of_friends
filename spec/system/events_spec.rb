@@ -28,7 +28,7 @@ RSpec.describe 'Events', type: :system do
         fill_in 'event_end_time', with: ''
         expect do
           find("input[name='commit']").click
-        end.to change { Event.count }.by0
+        end.to change { Event.count }.by(0)
       end
     end
     context '成功する時' do
@@ -42,7 +42,7 @@ RSpec.describe 'Events', type: :system do
         expect do
           find("input[name='commit']").click
           expect(page).to have_content('Event Title')
-        end.to change { Event.count }.by1
+        end.to change { Event.count }.by(1)
         expect(current_path).to eq circle_path(user_event.event.circle)
       end
     end
@@ -92,7 +92,7 @@ RSpec.describe 'Events', type: :system do
         fill_in 'event_end_time', with: ''
         expect do
           find("input[name='commit']").click
-        end.to change { Event.count }.by0
+        end.to change { Event.count }.by(0)
         expect(current_path).to eq edit_circle_event_path(user_event.event.circle, user_event.event)
       end
     end
@@ -106,7 +106,7 @@ RSpec.describe 'Events', type: :system do
           find("input[name='commit']").click
           expect(page).to have_content('Update Event')
           expect(page).to have_content('Update Body')
-        end.to change { Event.count }.by0
+        end.to change { Event.count }.by(0)
         expect(current_path).to eq circle_event_path(user_event.event.circle, user_event.event)
       end
     end
