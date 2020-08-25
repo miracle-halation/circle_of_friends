@@ -19,7 +19,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @users = @circle.users
+    @users = @event.users
   end
 
   def edit
@@ -30,6 +30,17 @@ class EventsController < ApplicationController
       redirect_to circle_event_path(@circle, @event)
     else
       render :edit
+    end
+  end
+
+  def attend
+    @event = Event.find(params[:event_id])
+    if @event.users.include?(current_user)
+      @event.absence(current_user)
+      redirect_to circle_event_path(@circle, @event)
+    else
+      @event.attendance(current_user)
+      redirect_to circle_event_path(@circle, @event)
     end
   end
 

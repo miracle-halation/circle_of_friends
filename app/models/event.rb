@@ -9,4 +9,12 @@ class Event < ApplicationRecord
     validates :start_time
     validates :end_time
   end
+
+  def attendance(other_user)
+    users << other_user
+  end
+
+  def absence(other_user)
+    users.delete(other_user)
+  end
 end
