@@ -111,4 +111,45 @@ RSpec.describe 'Events', type: :system do
       end
     end
   end
+
+  describe "出欠席機能" do
+    context "失敗する時" do
+      it "サークルに所属していないユーザーだとトップページへ遷移する" do
+        login(user)
+        visit circle_event_attend_path(user_event.event.circle, user_event.event)
+        expect(current_path).to eq root_path
+      end
+    end
+    context "成功する時" do
+      it "出席状態になるとイベント詳細ページに自分の名前が表示される" do
+        login(user)
+        user_event.event.circle.users << user
+        visit circle_event_path(user_event.event.circle, user_event.event)
+        within(:css, '.list-group') do
+          expect(page).to have_no_content user.nickname
+        end
+        expect do
+          click_link('出欠登録')
+          sleep(1)
+        end.to change { user_event.event.users.count }.by(1)
+        within(:css, '.list-group') do
+          expect(page).to have_content user.nickname
+        end
+      end
+      it "欠席状態になるとイベント詳細ページに自分の名前が表示される" do
+        login(user_event.user)
+        visit circle_event_path(user_event.event.circle, user_event.event)
+        within(:css, '.list-group') do
+          expect(page).to have_content user_event.user.nickname
+        end
+        expect do
+          click_link('出欠登録')
+          sleep(1)
+        end.to change { user_event.event.users.count }.by(-1)
+        within(:css, '.list-group') do
+          expect(page).to have_no_content user_event.user.nickname
+        end
+      end
+    end
+  end
 end
