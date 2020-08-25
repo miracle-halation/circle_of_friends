@@ -50,7 +50,7 @@ body{
 	margin: 10px;
 }
 
-.article-content{
+.content{
 	height: 300px;
 	overflow: scroll;
 }
@@ -70,4 +70,12 @@ body{
 .circle-img{
 	height: 200px;
 	width: 200px;
+}
+
+.calendar-heading{
+	display: flex;
+	justify-content: space-between;
+	span{
+		font-size: x-large;
+	}
 }

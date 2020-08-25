@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_055302) do
+ActiveRecord::Schema.define(version: 2020_08_25_023500) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -64,6 +64,17 @@ ActiveRecord::Schema.define(version: 2020_08_20_055302) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.bigint "circle_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["circle_id"], name: "index_events_on_circle_id"
+  end
+
   create_table "user_circles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "circle_id", null: false
@@ -72,6 +83,15 @@ ActiveRecord::Schema.define(version: 2020_08_20_055302) do
     t.boolean "leader", default: false, null: false
     t.index ["circle_id"], name: "index_user_circles_on_circle_id"
     t.index ["user_id"], name: "index_user_circles_on_user_id"
+  end
+
+  create_table "user_events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_user_events_on_event_id"
+    t.index ["user_id"], name: "index_user_events_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -90,6 +110,9 @@ ActiveRecord::Schema.define(version: 2020_08_20_055302) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "circles"
   add_foreign_key "articles", "users"
+  add_foreign_key "events", "circles"
   add_foreign_key "user_circles", "circles"
   add_foreign_key "user_circles", "users"
+  add_foreign_key "user_events", "events"
+  add_foreign_key "user_events", "users"
 end

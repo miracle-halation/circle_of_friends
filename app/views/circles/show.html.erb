@@ -31,4 +31,16 @@
 			<li class="list-group-item"><%= link_to article.title, circle_article_path(@circle, article) %></li>
 		<% end %>
 	</ul>
+	<br>
+	<h2>イベントスケジュール</h2>
+	<%= link_to "新規イベント作成", new_circle_event_path(@circle), class: "btn btn-primary btn-lg" %>
+	<%= month_calendar events: @events do |date, events| %>
+		<%= date %>
+
+		<% events.each do |event| %>
+			<div>
+				<%= link_to event.title, circle_event_path(@circle,event) %>
+			</div>
+		<% end %>
+	<% end %>
 </div>

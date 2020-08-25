@@ -24,6 +24,7 @@ class CirclesController < ApplicationController
   def show
     @users = @circle.users
     @articles = @circle.articles
+    @events = @circle.events
   end
 
   def edit
@@ -69,7 +70,7 @@ class CirclesController < ApplicationController
 
   def circle_params
     params.require(:circle)
-          .permit(:name, :description, :genre_id, :activity_id, :age_range_id, :prefecture_id, :leader, :image,user_ids: [])
+          .permit(:name, :description, :genre_id, :activity_id, :age_range_id, :prefecture_id, :leader, :image, user_ids: [])
           .merge(leader_user: current_user)
   end
 
@@ -82,7 +83,7 @@ class CirclesController < ApplicationController
   end
 
   def set_users
-    @users = User.where.not(id: current_user.id)
+    @users = User.where.not(id: current_user)
   end
 
   def leader_user?

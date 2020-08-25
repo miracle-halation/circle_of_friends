@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
     if @article.save
       redirect_to circle_path(@circle)
     else
-      redirect_to new_circle_article_path(@circle)
+      render :new
       flash.now[:alert] = '作成に失敗しました'
     end
   end
