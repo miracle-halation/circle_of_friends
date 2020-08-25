@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     resources :articles, except: [:index]
     resources :events, except: [:index, :destroy] do
       get "attend"
-      get "absence"
     end
   end
   

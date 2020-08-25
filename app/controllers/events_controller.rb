@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :sign_in_user?
-  before_action :set_circle
+  before_action :set_circle, only: [:show, :edit, :update, :attend, :absence]
   before_action :ser_event, only: [:show, :edit, :update]
   before_action :circle_user?
   before_action :leader_user?, only: [:edit]
@@ -30,6 +30,16 @@ class EventsController < ApplicationController
       redirect_to circle_event_path(@circle, @event)
     else
       render :edit
+    end
+  end
+
+  def attend
+    if @event.users.include?(current_user)
+      @event.absence(current_user)
+      redirect_to circle_event_path(@circle, @event)
+    else
+      @event.attendance(current_user)
+      redirect_to circle_event_path(@circle, @event)
     end
   end
 
