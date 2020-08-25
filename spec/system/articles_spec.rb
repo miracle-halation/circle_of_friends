@@ -32,12 +32,14 @@ RSpec.describe 'Articles', type: :system do
     end
     context '成功する時' do
       it '全ての情報が正しいと保存されて、サークル詳細ページへ遷移する' do
+        image_path = Rails.root.join('public/images/test_image.jpg')
         login(user_circle.user)
         visit new_circle_article_path(user_circle.circle)
         fill_in 'article[title]', with: 'article title'
+        attach_file('article[image]', image_path)
         fill_in_rich_text_area 'article_content', with: 'article content'
         expect do
-          find("input[name='commit']").click
+          find("input[name='commit']").double_click
           sleep(1)
         end.to change { Article.count }.by(1)
         expect(current_path).to eq circle_path(user_circle.circle)
@@ -85,7 +87,8 @@ RSpec.describe 'Articles', type: :system do
         fill_in 'article[title]', with: 'update_title'
         fill_in_rich_text_area 'article_content', with: 'update_content'
         expect do
-          find("input[name='commit']").click
+          find("input[name='commit']").double_click
+          sleep(1)
         end.to change { Article.count }.by(0)
         expect(page).to have_content 'update_title'
         expect(page).to have_content 'update_content'
