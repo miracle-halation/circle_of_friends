@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :circles, through: :user_circles
   has_many :articles
   has_many :user_events
-	has_many :events, through: :user_events
+  has_many :events, through: :user_events
   has_one_attached :avatar
 end
