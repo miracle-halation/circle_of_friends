@@ -3,6 +3,7 @@ class CirclesController < ApplicationController
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
   before_action :set_users, only: [:new, :edit, :create, :update]
   before_action :leader_user?, only: [:edit]
+  before_action :serach_circle, only: [:index, :search]
 
   def index
     @circles = Circle.all.order(created_at: 'DESC')
@@ -66,6 +67,10 @@ class CirclesController < ApplicationController
     end
   end
 
+  def search
+    @results = @p.result
+  end
+
   private
 
   def circle_params
@@ -88,5 +93,9 @@ class CirclesController < ApplicationController
 
   def leader_user?
     redirect_to root_path unless @circle.leader_user == current_user
+  end
+
+  def serach_circle
+    @p = Circle.ransack(params[:q])
   end
 end

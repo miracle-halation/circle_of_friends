@@ -4,6 +4,30 @@
 			<h1>Circle Of Friends</h1>
 		</div>
 	</div>
+	<h3>検索</h3>
+	<div class="row row-cols-4">
+		<%= search_form_for @p, url: circles_search_path, class:"form-row" do |f| %>
+			<%= f.label :name, "サークル名" %>
+			<%= f.text_field :name, class:"form-control mb-2"%>
+			<div class="col">
+				<%= f.label :genre_id, "ジャンル" %>
+				<%= f.collection_select(:genre_id, Genre.all, :id, :name, {include_blank: '指定なし' }, {class:"form-control"}) %>
+			</div>
+			<div class="col">
+				<%= f.label :activity_id, "活動頻度" %>
+				<%= f.collection_select(:activity_id, Activity.all, :id, :name, {include_blank: '指定なし' }, {class:"form-control"}) %>
+			</div>
+			<div class="col">
+				<%= f.label :age_range_id, "年代層" %>
+				<%= f.collection_select(:age_range_id_eq, AgeRange.all, :id, :name, {include_blank: '指定なし' }, {class:"form-control"}) %>
+			</div>
+			<div class="col">
+				<%= f.label :prefecture_id, "都道府県" %>
+				<%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {include_blank: '指定なし' }, {class:"form-control"}) %>
+			</div>
+			<%= f.submit '検索', class:"search-btn" %>
+		<% end %>
+	</div>
 	<h3>サークル一覧</h3>
 	<div class="d-flex flex-column bd-highlight mb-3">
 		<% @circles.each do |circle| %>
