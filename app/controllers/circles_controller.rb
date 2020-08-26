@@ -68,7 +68,7 @@ class CirclesController < ApplicationController
   end
 
   def search
-    @results = @p.result
+    @results = @p.result(distinct: true)
   end
 
   private
