@@ -182,10 +182,10 @@ RSpec.describe 'Circles', type: :system do
   describe '検索機能' do
     let(:user_circle) { FactoryBot.create(:user_circle) }
     let(:search_circle) { FactoryBot.create(:circle) }
-    it "search_circleの情報で検索すると、search_circleのみ表示される" do
+    it 'search_circleの情報で検索すると、search_circleのみ表示される' do
       visit root_path
-      fill_in 'q_name_cont',  with: search_circle.name
-      click_on "検索"
+      fill_in 'q_name_cont', with: search_circle.name
+      click_on '検索'
       expect(current_path).to eq circles_search_path
       expect(page).to have_content search_circle.name
       expect(page).to have_no_content user_circle.circle.name

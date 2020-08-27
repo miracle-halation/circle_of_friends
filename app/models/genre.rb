@@ -20,6 +20,6 @@ class Genre < ActiveHash::Base
     { id: 18, name: 'ペット' },
     { id: 19, name: '音楽' },
     { id: 20, name: '外国語' },
-    { id: 21, name: 'その他' },
+    { id: 21, name: 'その他' }
   ]
 end
