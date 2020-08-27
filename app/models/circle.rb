@@ -21,6 +21,11 @@ class Circle < ApplicationRecord
     validates :city
   end
 
+  def filter_by_genre(genre)
+    return if genre.blank?
+    
+  end
+
   def invite(other_users)
     users << other_users
   end

@@ -71,6 +71,10 @@ class CirclesController < ApplicationController
     @results = @p.result(distinct: true)
   end
 
+  def genre
+    @circles = Circle.filter_by_genre(params[:genre])
+  end
+
   private
 
   def circle_params

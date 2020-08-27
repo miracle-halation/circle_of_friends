@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "circles#index"
   get "circles/search"
+  get "circles/genre"
   resources :circles do
     get "joing"
     get "withdrawal"
