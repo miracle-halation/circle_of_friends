@@ -37,11 +37,10 @@ class EventsController < ApplicationController
     @event = Event.find(params[:event_id])
     if @event.users.include?(current_user)
       @event.absence(current_user)
-      redirect_to circle_event_path(@circle, @event)
     else
       @event.attendance(current_user)
-      redirect_to circle_event_path(@circle, @event)
     end
+    redirect_to circle_event_path(@circle, @event)
   end
 
   private
