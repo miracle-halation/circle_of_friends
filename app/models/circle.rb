@@ -8,8 +8,6 @@ class Circle < ApplicationRecord
   has_one :leader_user, through: :leader_circle_user, source: :user
   has_one_attached :image
   belongs_to_active_hash :genre
-  belongs_to_active_hash :activity
-  belongs_to_active_hash :age_range
   belongs_to_active_hash :prefecture
 
   with_options presence: true do
