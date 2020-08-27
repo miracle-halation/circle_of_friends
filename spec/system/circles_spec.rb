@@ -11,7 +11,7 @@ RSpec.describe 'Circles', type: :system do
         fill_in 'circle_description', with: 'circle_description'
         select 'スポーツ', from: 'circle[genre_id]'
         select '毎週', from: 'circle[activity_id]'
-        select '20代が多い', from: 'circle[age_range_id]'
+        select '20代', from: 'circle[age_range_id]'
         select '北海道', from: 'circle[prefecture_id]'
         expect do
           find("input[name='commit']").click
@@ -176,6 +176,19 @@ RSpec.describe 'Circles', type: :system do
         end.to change { user_circle.circle.users.count }.by(-1)
         expect(current_path).to eq root_path
       end
+    end
+  end
+
+  describe '検索機能' do
+    let(:user_circle) { FactoryBot.create(:user_circle) }
+    let(:search_circle) { FactoryBot.create(:circle) }
+    it "search_circleの情報で検索すると、search_circleのみ表示される" do
+      visit root_path
+      fill_in 'q_name_cont',  with: search_circle.name
+      click_on "検索"
+      expect(current_path).to eq circles_search_path
+      expect(page).to have_content search_circle.name
+      expect(page).to have_no_content user_circle.circle.name
     end
   end
 end
