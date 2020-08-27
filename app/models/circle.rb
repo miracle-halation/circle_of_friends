@@ -14,11 +14,13 @@ class Circle < ApplicationRecord
 
   with_options presence: true do
     validates :name
+    validates :phrase
     validates	:description, length: { maximum: 1000 }
     validates :genre_id, numericality: { other_than: 1 }
-    validates :activity_id, numericality: { other_than: 1 }
-    validates :age_range_id, numericality: { other_than: 1 }
+    validates :activity
+    validates :age_range
     validates :prefecture_id, numericality: { other_than: 1 }
+    validates :city
   end
 
   def invite(other_users)
