@@ -75,7 +75,8 @@ class CirclesController < ApplicationController
 
   def circle_params
     params.require(:circle)
-          .permit(:name, :phrase, :description, :genre_id, :activity, :age_range, :prefecture_id, :city, :leader, :image, user_ids: [])
+          .permit(:name, :phrase, :description, :genre_id, :activity, :age_range, :prefecture_id, :city,
+                  :leader, :image, user_ids: [])
           .merge(leader_user: current_user)
   end
 
