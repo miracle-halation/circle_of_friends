@@ -18,6 +18,7 @@
 | Column | Type | Options |
 | ------ | ---- | ------- |
 | name | string | null:false |
+| phrase | string | null:false |
 | description | text | null:false |
 | genre_id | integer | null:false |
 | activity |string | null:false |
