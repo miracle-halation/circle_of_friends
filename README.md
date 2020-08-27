@@ -18,11 +18,13 @@
 | Column | Type | Options |
 | ------ | ---- | ------- |
 | name | string | null:false |
+| phrase | string | null:false |
 | description | text | null:false |
 | genre_id | integer | null:false |
-| activity_id | integer | null:false |
-| age_range_id | integer | null:false |
+| activity |string | null:false |
+| age_range | string | null:false |
 | prefecture_id | integer | null:false |
+| city | string | null:false |
 
 # Association
 - has_many :users, through :user_circles

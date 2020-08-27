@@ -8,11 +8,13 @@ RSpec.describe 'Circles', type: :system do
         login(user)
         visit new_circle_path
         fill_in 'circle_name', with: 'circle'
+        fill_in 'circle_phrase', with: 'circle_phrase'
         fill_in 'circle_description', with: 'circle_description'
         select 'スポーツ', from: 'circle[genre_id]'
-        select '毎週', from: 'circle[activity_id]'
-        select '20代', from: 'circle[age_range_id]'
+        fill_in 'circle_activity', with: 'circle_activity'
+        fill_in 'circle_age_range', with: 'circle_age_range'
         select '北海道', from: 'circle[prefecture_id]'
+        fill_in 'circle_city', with: 'circle_city'
         expect do
           find("input[name='commit']").click
         end.to change { Circle.count }.by(1)
@@ -55,11 +57,13 @@ RSpec.describe 'Circles', type: :system do
     it '新規登録の時に登録した情報が全て表示されている' do
       visit circle_path(user_circle.circle)
       expect(page).to have_content user_circle.circle.name
+      expect(page).to have_content user_circle.circle.phrase
       expect(page).to have_content user_circle.circle.description
       expect(page).to have_content user_circle.circle.genre.name
-      expect(page).to have_content user_circle.circle.activity.name
-      expect(page).to have_content user_circle.circle.age_range.name
+      expect(page).to have_content user_circle.circle.activity
+      expect(page).to have_content user_circle.circle.age_range
       expect(page).to have_content user_circle.circle.prefecture.name
+      expect(page).to have_content user_circle.circle.city
     end
   end
 
@@ -184,7 +188,7 @@ RSpec.describe 'Circles', type: :system do
     let(:search_circle) { FactoryBot.create(:circle) }
     it 'search_circleの情報で検索すると、search_circleのみ表示される' do
       visit root_path
-      fill_in 'q_name_cont', with: search_circle.name
+      fill_in 'q_name_or_phrase_or_description_or_activity_or_age_range_or_city_cont', with: search_circle.name
       click_on '検索'
       expect(current_path).to eq circles_search_path
       expect(page).to have_content search_circle.name

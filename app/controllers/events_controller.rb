@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_circle
   before_action :ser_event, only: [:show, :edit, :update]
   before_action :circle_user?
-  before_action :leader_user?, only: [:edit]
+  before_action :author_user?, only: [:edit]
 
   def new
     @event = @circle.events.new
@@ -47,7 +47,8 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event)
-          .permit(:title, :body, :start_time, :end_time, :circle_id)
+          .permit(:title, :body, :start_time, :end_time, :circle_id, :author)
+          .merge(author_user: current_user)
   end
 
   def sign_in_user?
@@ -66,7 +67,7 @@ class EventsController < ApplicationController
     return redirect_to root_path unless @circle.users.include?(current_user)
   end
 
-  def leader_user?
-    redirect_to root_path unless @circle.leader_user == current_user
+  def author_user?
+    redirect_to root_path unless @event.author_user == current_user
   end
 end

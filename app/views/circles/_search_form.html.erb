@@ -1,18 +1,10 @@
 <div class="row row-cols-4">
 	<%= search_form_for search, url: circles_search_path, class:"form-row" do |f| %>
-		<%= f.label :name_cont, "サークル名" %>
-		<%= f.text_field :name_cont, class:"form-control mb-2"%>
+		<%= f.label :name_or_phrase_or_description_or_activity_or_age_range_or_city_cont, "サークル名" %>
+		<%= f.text_field :name_or_phrase_or_description_or_activity_or_age_range_or_city_cont, class:"form-control mb-2"%>
 		<div class="col">
 			<%= f.label :genre_id_eq, "ジャンル" %>
 			<%= f.collection_select(:genre_id_eq, Genre.all, :id, :name, {include_blank: '指定なし' }, {class:"form-control"}) %>
-		</div>
-		<div class="col">
-			<%= f.label :activity_id_eq, "活動頻度" %>
-			<%= f.collection_select(:activity_id_eq, Activity.all, :id, :name, {include_blank: '指定なし' }, {class:"form-control"}) %>
-		</div>
-		<div class="col">
-			<%= f.label :age_range_id_eq, "年代層" %>
-			<%= f.collection_select(:age_range_id_eq, AgeRange.all, :id, :name, {include_blank: '指定なし' }, {class:"form-control"}) %>
 		</div>
 		<div class="col">
 			<%= f.label :prefecture_id_eq, "都道府県" %>

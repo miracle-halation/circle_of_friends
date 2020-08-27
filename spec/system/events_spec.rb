@@ -83,8 +83,14 @@ RSpec.describe 'Events', type: :system do
         visit edit_circle_event_path(user_event.event.circle, user_event.event)
         expect(current_path).to eq root_path
       end
+      it '作成者出ないなら、トップページへ遷移する' do
+        login(user_event.user)
+        user_event.event.author_user = user_event.user
+        visit edit_circle_event_path(user_event.event.circle, user_event.event)
+      end
       it '入力値が正しくないと編集できない' do
         login(user_event.user)
+        user_event.event.author_user = user_event.user
         visit edit_circle_event_path(user_event.event.circle, user_event.event)
         fill_in 'event_title', with: ''
         fill_in 'event_body', with: ''
@@ -99,6 +105,7 @@ RSpec.describe 'Events', type: :system do
     context '成功する時' do
       it '値が正しいと編集に成功してイベント詳細ページへ遷移する' do
         login(user_event.user)
+        user_event.event.author_user = user_event.user
         visit edit_circle_event_path(user_event.event.circle, user_event.event)
         fill_in 'event_title', with: 'Update Event'
         fill_in 'event_body', with: 'Update Body'

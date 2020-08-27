@@ -14,6 +14,11 @@ RSpec.describe Circle, type: :model do
         circle.valid?
         expect(circle.errors.full_messages).to include("Name can't be blank")
       end
+      it 'phraseが空だと登録できない' do
+        circle.phrase = nil
+        circle.valid?
+        expect(circle.errors.full_messages).to include("Phrase can't be blank")
+      end
       it 'descriptionが空だと登録できない' do
         circle.description = nil
         circle.valid?
@@ -29,25 +34,15 @@ RSpec.describe Circle, type: :model do
         circle.valid?
         expect(circle.errors.full_messages).to include('Genre must be other than 1')
       end
-      it 'activity_idが空だと登録できない' do
-        circle.activity_id = nil
+      it 'activityが空だと登録できない' do
+        circle.activity = nil
         circle.valid?
         expect(circle.errors.full_messages).to include("Activity can't be blank")
       end
-      it 'activity_idが1だと登録できない' do
-        circle.activity_id = 1
-        circle.valid?
-        expect(circle.errors.full_messages).to include('Activity must be other than 1')
-      end
-      it 'age_range_idが空だと登録できない' do
-        circle.age_range_id = nil
+      it 'age_rangeが空だと登録できない' do
+        circle.age_range = nil
         circle.valid?
         expect(circle.errors.full_messages).to include("Age range can't be blank")
-      end
-      it 'age_range_idが1だと登録できない' do
-        circle.age_range_id = 1
-        circle.valid?
-        expect(circle.errors.full_messages).to include('Age range must be other than 1')
       end
       it 'prefecture_idが空だと登録できない' do
         circle.prefecture_id = nil
@@ -58,6 +53,11 @@ RSpec.describe Circle, type: :model do
         circle.prefecture_id = 1
         circle.valid?
         expect(circle.errors.full_messages).to include('Prefecture must be other than 1')
+      end
+      it 'cityが空だと登録できない' do
+        circle.city = nil
+        circle.valid?
+        expect(circle.errors.full_messages).to include("City can't be blank")
       end
     end
   end

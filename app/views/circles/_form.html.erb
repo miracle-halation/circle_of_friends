@@ -10,6 +10,12 @@
 			<div class='field-input'>
 				<%= f.text_field :name, autofocus: true%>
 			</div>
+			<div class='field-label'>
+				<%= f.label :phrase %>
+			</div>
+			<div class='field-input'>
+				<%= f.text_field :phrase, autofocus: true%>
+			</div>
 		</div>
 		<div class='field'>
 			<div class='field-label'>
@@ -27,22 +33,28 @@
 				<%= f.collection_select(:genre_id, Genre.all, :id, :name, {}, {class:"form-control"}) %>
 			</div>
 			<div class='field-label'>
-				<%= f.label :activity_id %>
+				<%= f.label :activity %>
 			</div>
 			<div class='field-input'>
-				<%= f.collection_select(:activity_id, Activity.all, :id, :name, {}, {class:"form-control"}) %>
+				<%= f.text_field :activity, autofocus: true%>
 			</div>
 			<div class='field-label'>
-				<%= f.label :age_range_id %>
+				<%= f.label :age_range %>
 			</div>
 			<div class='field-input'>
-				<%= f.collection_select(:age_range_id, AgeRange.all, :id, :name, {}, {class:"form-control"}) %>
+				<%= f.text_field :age_range, autofocus: true%>
 			</div>
 			<div class='field-label'>
 				<%= f.label :prefecture_id %>
 			</div>
 			<div class='field-input'>
 				<%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"form-control"}) %>
+			</div>
+			<div class='field-label'>
+				<%= f.label :city %>
+			</div>
+			<div class='field-input'>
+				<%= f.text_field :city, autofocus: true%>
 			</div>
 			<div class="row">
 				<%= f.collection_check_boxes(:user_ids, @users, :id, :nickname) do |b| %>

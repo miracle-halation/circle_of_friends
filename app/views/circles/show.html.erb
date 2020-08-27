@@ -5,18 +5,21 @@
 			<%= link_to "編集", edit_circle_path(@circle), class: "btn btn-primary btn-lg" %>
 			<%= link_to "削除", circle_path, method: :delete, data: {confirm: "本当に削除しますか？"} ,class: "btn btn-secondary btn-lg" %>
 		<% end %>
-		<% if @circle.users.include?(current_user) %>
+		<% if @users.include?(current_user) %>
 			<%= link_to "退会", circle_withdrawal_path(@circle), class: "btn btn-primary btn-lg" %>
 		<% else %>
 			<%= link_to "加入", circle_joing_path(@circle), class: "btn btn-primary btn-lg" %>
 		<% end %>
 	</div>
-	 <h2>サークル情報</h2>
+	<h2>サークル情報</h2>
 	<ul class="list-group">
+		<li class="list-group-item">サークル詳細説明：<br>
+			<%= safe_join(@circle.description.split("\n"), tag(:br)) %></li>
 		<li class="list-group-item">ジャンル：<%= @circle.genre.name %></li>
-		<li class="list-group-item">活動頻度：<%= @circle.activity.name %></li>
-		<li class="list-group-item">年齢層：<%= @circle.age_range.name %></li>
+		<li class="list-group-item">活動日：<%= @circle.activity %></li>
+		<li class="list-group-item">年齢層：<%= @circle.age_range %></li>
 		<li class="list-group-item">活動県：<%= @circle.prefecture.name %></li>
+		<li class="list-group-item">活動都市：<%= @circle.city %></li>
 	</ul>
 	<h2>所属しているユーザー</h2>
 	<ul class="list-group list-group-flush">
@@ -36,7 +39,6 @@
 	<%= link_to "新規イベント作成", new_circle_event_path(@circle), class: "btn btn-primary btn-lg" %>
 	<%= month_calendar events: @events do |date, events| %>
 		<%= date %>
-
 		<% events.each do |event| %>
 			<div>
 				<%= link_to event.title, circle_event_path(@circle,event) %>

@@ -11,7 +11,7 @@
 			<h2>詳細</h2>
     </div>
   </div>
-	<div class="row">
+	<div class="row justify-content-md-center">
 		<%= @event.body%>
 	</div>
 	<br>
@@ -21,4 +21,7 @@
   		<li class="list-group-item"><%= user.nickname %></li>
 		<% end %>
 	</ul>
+	<div class="row justify-content-md-center">
+		<%= link_to "戻る", circle_path(@circle), class:"btn btn-primary" %>
+	</div>
 </div>
