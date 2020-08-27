@@ -1,0 +1,17 @@
+<div class="container">
+	<h3>検索</h3>
+	<%= render "search_form", search: @p %>
+	<h3>検索結果</h3>
+	<br>
+	<% if @results.length !=0 %>
+		<% @results.each do |result| %>
+			<div class="p-2 bd-highlight circle-list">
+				<%= link_to result.name, circle_path(result) %>
+				<br>
+				<%= image_tag result.image, class: "circle-img" if result.image.attached?%>
+				<%= result.phrase %>
+			</div>
+			<br>
+		<% end %>
+	<% end %>
+</div>

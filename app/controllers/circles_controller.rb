@@ -3,10 +3,11 @@ class CirclesController < ApplicationController
   before_action :set_circle, only: [:show, :edit, :update, :destroy]
   before_action :set_users, only: [:new, :edit, :create, :update]
   before_action :leader_user?, only: [:edit]
-  before_action :serach_circle, only: [:index, :search]
+  before_action :serach_circle, only: [:index, :search, :genre]
 
   def index
     @circles = Circle.all.with_attached_image.order(created_at: 'DESC')
+    @genres = Genre.all.where.not(id:1)
   end
 
   def new

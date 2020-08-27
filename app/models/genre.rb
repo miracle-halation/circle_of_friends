@@ -17,9 +17,8 @@ class Genre < ActiveHash::Base
     { id: 15, name: 'ペット' },
     { id: 16, name: 'ビジネス' },
     { id: 17, name: 'ダンス' },
-    { id: 18, name: 'ペット' },
-    { id: 19, name: '音楽' },
-    { id: 20, name: '外国語' },
-    { id: 21, name: 'その他' }
+    { id: 18, name: '音楽' },
+    { id: 19, name: '外国語' },
+    { id: 20, name: 'その他' }
   ]
 end
