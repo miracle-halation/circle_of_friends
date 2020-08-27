@@ -195,4 +195,15 @@ RSpec.describe 'Circles', type: :system do
       expect(page).to have_no_content user_circle.circle.name
     end
   end
+
+  describe "ジャンルわけ機能" do
+    let(:user_circle) { FactoryBot.create(:user_circle) }
+    let(:circle){FactoryBot.create(:circle, genre_id: 3)}
+    it 'user_circleのジャンル名をクリックすると、user_circleのみ表示される' do
+      visit root_path
+      click_on user_circle.circle.genre.name
+      expect(page).to have_content user_circle.circle.name
+      expect(page).to have_no_content circle.name
+    end
+  end
 end
