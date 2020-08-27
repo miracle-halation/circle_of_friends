@@ -5,16 +5,13 @@
 	<br>
 	<% if @results.length !=0 %>
 		<% @results.each do |result| %>
-			<%= link_to circle_path(result) do %>
-			<div class="row">
+			<div class="p-2 bd-highlight circle-list">
+				<%= link_to result.name, circle_path(result) %>
+				<br>
 				<%= image_tag result.image, class: "circle-img" if result.image.attached?%>
-				<div class="col">
-					<%= result.name %>
-					<%= result.phrase %>
-				</div>
+				<%= result.phrase %>
 			</div>
 			<br>
-			<% end %>
 		<% end %>
 	<% end %>
 </div>

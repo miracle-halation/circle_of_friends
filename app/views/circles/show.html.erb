@@ -11,11 +11,10 @@
 			<%= link_to "加入", circle_joing_path(@circle), class: "btn btn-primary btn-lg" %>
 		<% end %>
 	</div>
-	 <h2>サークル情報</h2>
-	 <div class="circle-content">
-	 	<%= @circle.description %>
-	 </div>
+	<h2>サークル情報</h2>
 	<ul class="list-group">
+		<li class="list-group-item">サークル詳細説明：<br>
+			<%= safe_join(@circle.description.split("\n"), tag(:br)) %></li>
 		<li class="list-group-item">ジャンル：<%= @circle.genre.name %></li>
 		<li class="list-group-item">活動日：<%= @circle.activity %></li>
 		<li class="list-group-item">年齢層：<%= @circle.age_range %></li>
@@ -40,7 +39,6 @@
 	<%= link_to "新規イベント作成", new_circle_event_path(@circle), class: "btn btn-primary btn-lg" %>
 	<%= month_calendar events: @events do |date, events| %>
 		<%= date %>
-
 		<% events.each do |event| %>
 			<div>
 				<%= link_to event.title, circle_event_path(@circle,event) %>
