@@ -47,7 +47,8 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event)
-          .permit(:title, :body, :start_time, :end_time, :circle_id)
+          .permit(:title, :body, :start_time, :end_time, :circle_id, :author)
+          .merge(author_user: current_user)
   end
 
   def sign_in_user?

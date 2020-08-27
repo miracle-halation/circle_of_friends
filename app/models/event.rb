@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
   has_many :user_events
   has_many :users, through: :user_events
+  has_one :author_circle_user, -> { where(author: true) }, class_name: 'UserEvent'
+  has_one :author_user, through: :author_circle_user, source: :user
   belongs_to :circle
 
   with_options presence: true do
