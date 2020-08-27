@@ -25,12 +25,12 @@
 	<h3>ジャンル</h3>
 	<div class="row">
 		<% @genres.each_with_index do |genre, n| %>
-			<div class="genre-images">
-				<%= link_to circles_genre_path do %>
+			<%= link_to circles_genre_path(genre: genre) do %>
+				<div class="genre-images">
 					<%= image_tag "genres/image#{n+1}.jpg", class:"circle-img" %>
 					<p><%= genre.name %></p>
-				<% end %>
-			</div>
+				</div>
+			<% end %>
 		<% end %>
 	</div>
 </div>

@@ -3,13 +3,13 @@
 	<%= render "search_form", search: @p %>
 	<h3>検索結果</h3>
 	<br>
-	<% if @results.length !=0 %>
-		<% @results.each do |result| %>
+	<% if @circles %>
+		<% @circles.each do |circle| %>
 			<div class="p-2 bd-highlight circle-list">
-				<%= link_to result.name, circle_path(result) %>
+				<%= link_to circle.name, circle_path(circle) %>
 				<br>
-				<%= image_tag result.image, class: "circle-img" if result.image.attached?%>
-				<%= result.phrase %>
+				<%= image_tag circle.image, class: "circle-img" if circle.image.attached?%>
+				<%= circle.phrase %>
 			</div>
 			<br>
 		<% end %>

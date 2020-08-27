@@ -73,7 +73,8 @@ class CirclesController < ApplicationController
   end
 
   def genre
-    @circles = Circle.filter_by_genre(params[:genre])
+    binding.pry
+    @circles = Circle.all.where(genre_id: params[:genre])
   end
 
   private
