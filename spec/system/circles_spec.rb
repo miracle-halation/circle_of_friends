@@ -196,9 +196,9 @@ RSpec.describe 'Circles', type: :system do
     end
   end
 
-  describe "ジャンルわけ機能" do
+  describe 'ジャンルわけ機能' do
     let(:user_circle) { FactoryBot.create(:user_circle) }
-    let(:circle){FactoryBot.create(:circle, genre_id: 3)}
+    let(:circle) { FactoryBot.create(:circle, genre_id: 3) }
     it 'user_circleのジャンル名をクリックすると、user_circleのみ表示される' do
       visit root_path
       click_on user_circle.circle.genre.name

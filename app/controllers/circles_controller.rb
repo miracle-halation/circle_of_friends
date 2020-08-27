@@ -7,7 +7,7 @@ class CirclesController < ApplicationController
 
   def index
     @circles = Circle.all.with_attached_image.order(created_at: 'DESC')
-    @genres = Genre.all.where.not(id:1)
+    @genres = Genre.all.where.not(id: 1)
   end
 
   def new

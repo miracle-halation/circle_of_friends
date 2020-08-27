@@ -21,7 +21,6 @@ class Circle < ApplicationRecord
     validates :city
   end
 
-
   def invite(other_users)
     users << other_users
   end
