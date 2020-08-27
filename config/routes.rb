@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "circles#index"
+  get "circles/search"
   resources :circles do
     get "joing"
     get "withdrawal"

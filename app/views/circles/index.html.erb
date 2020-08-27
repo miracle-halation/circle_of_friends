@@ -4,13 +4,14 @@
 			<h1>Circle Of Friends</h1>
 		</div>
 	</div>
+	<h3>検索</h3>
+	<%= render "search_form", search: @p%>
 	<h3>サークル一覧</h3>
 	<div class="d-flex flex-column bd-highlight mb-3">
 		<% @circles.each do |circle| %>
 		<div class="p-2 bd-highlight circle-list">
 			<%= link_to circle.name, circle_path(circle) %>
 			<%= image_tag circle.image, class: "circle-img" if circle.image.attached?%>
-			<p>活動頻度:<%= circle.activity.name %></p>
 		</div>
 		<% end %>
 	</div>
