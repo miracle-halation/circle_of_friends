@@ -11,6 +11,7 @@
 		<% @circles.each do |circle| %>
 		<div class="p-2 bd-highlight circle-list">
 			<%= link_to circle.name, circle_path(circle) %>
+			<%= circle.phrase %>
 			<%= image_tag circle.image, class: "circle-img" if circle.image.attached?%>
 		</div>
 		<% end %>

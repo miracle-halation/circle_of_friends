@@ -12,11 +12,15 @@
 		<% end %>
 	</div>
 	 <h2>サークル情報</h2>
+	 <div class="circle-content">
+	 	<%= @circle.description %>
+	 </div>
 	<ul class="list-group">
 		<li class="list-group-item">ジャンル：<%= @circle.genre.name %></li>
-		<li class="list-group-item">活動頻度：<%= @circle.activity.name %></li>
-		<li class="list-group-item">年齢層：<%= @circle.age_range.name %></li>
+		<li class="list-group-item">活動日：<%= @circle.activity %></li>
+		<li class="list-group-item">年齢層：<%= @circle.age_range %></li>
 		<li class="list-group-item">活動県：<%= @circle.prefecture.name %></li>
+		<li class="list-group-item">活動都市：<%= @circle.city %></li>
 	</ul>
 	<h2>所属しているユーザー</h2>
 	<ul class="list-group list-group-flush">
