@@ -6,7 +6,7 @@ class CirclesController < ApplicationController
   before_action :serach_circle, only: [:index, :search]
 
   def index
-    @circles = Circle.all.order(created_at: 'DESC')
+    @circles = Circle.all.with_attached_image.order(created_at: 'DESC')
   end
 
   def new

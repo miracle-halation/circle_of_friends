@@ -5,7 +5,7 @@
 			<%= link_to "編集", edit_circle_path(@circle), class: "btn btn-primary btn-lg" %>
 			<%= link_to "削除", circle_path, method: :delete, data: {confirm: "本当に削除しますか？"} ,class: "btn btn-secondary btn-lg" %>
 		<% end %>
-		<% if @circle.users.include?(current_user) %>
+		<% if @users.include?(current_user) %>
 			<%= link_to "退会", circle_withdrawal_path(@circle), class: "btn btn-primary btn-lg" %>
 		<% else %>
 			<%= link_to "加入", circle_joing_path(@circle), class: "btn btn-primary btn-lg" %>
