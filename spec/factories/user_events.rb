@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :user_event do
     association :user
     association :event
-    author  { false }
+    author { false }
   end
 end

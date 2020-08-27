@@ -83,7 +83,7 @@ RSpec.describe 'Events', type: :system do
         visit edit_circle_event_path(user_event.event.circle, user_event.event)
         expect(current_path).to eq root_path
       end
-      it "作成者出ないなら、トップページへ遷移する" do
+      it '作成者出ないなら、トップページへ遷移する' do
         login(user_event.user)
         user_event.event.author_user = user_event.user
         visit edit_circle_event_path(user_event.event.circle, user_event.event)
