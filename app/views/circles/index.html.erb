@@ -22,7 +22,7 @@
 			<%= link_to "早速立ち上げる", new_circle_path, class: "btn btn-primary btn-lg active" %>
 		</div>
 	</div>
-	<h3>ジャンル</h3>
+	<h3>ジャンル一覧</h3>
 	<div class="row">
 		<% @genres.each_with_index do |genre, n| %>
 			<%= link_to circles_genre_path(genre: genre) do %>
