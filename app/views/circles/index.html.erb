@@ -1,8 +1,6 @@
 <div class="container">
 	<div class="row justify-content-md-center">
-		<div class="col-md-4">
-			<h1>Circle Of Friends</h1>
-		</div>
+		<h1 class="display-4">Circle Of Friends</h1>
 	</div>
 	<h3>検索</h3>
 	<%= render "search_form", search: @p%>
@@ -10,10 +8,26 @@
 	<div class="d-flex flex-column bd-highlight mb-3">
 		<% @circles.each do |circle| %>
 		<div class="p-2 bd-highlight circle-list">
-			<%= link_to circle.name, circle_path(circle) %>
+			<h4><%= link_to circle.name, circle_path(circle) %></h4>
 			<br>
-			<%= image_tag circle.image, class: "circle-img" if circle.image.attached?%>
-			<%= circle.phrase %>
+			<div class="circle-index">
+				<%= image_tag circle.image, class: "circle-img" if circle.image.attached?%>
+				<div class="circle-info">
+					<p class="font-weight-bold">
+						<%= circle.phrase %>
+					</p>
+					<span class="d-inline-block text-truncate" style="max-width: 800px;">
+						【サークル説明】<%= circle.description %>
+					</span>
+					<br>
+					<p class="font-weight-normal">
+						【ジャンル】<%= circle.genre.name %>
+					</p>
+					<p class="font-weight-normal">
+						【年齢層】<%= circle.age_range %>
+					</p>
+				</div>
+			</div>
 		</div>
 		<% end %>
 	</div>
@@ -22,7 +36,7 @@
 			<%= link_to "早速立ち上げる", new_circle_path, class: "btn btn-primary btn-lg active" %>
 		</div>
 	</div>
-	<h3>ジャンル</h3>
+	<h3>ジャンル一覧</h3>
 	<div class="row">
 		<% @genres.each_with_index do |genre, n| %>
 			<%= link_to circles_genre_path(genre: genre) do %>

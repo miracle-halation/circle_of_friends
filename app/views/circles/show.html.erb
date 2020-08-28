@@ -18,13 +18,12 @@
 		<li class="list-group-item">ジャンル：<%= @circle.genre.name %></li>
 		<li class="list-group-item">活動日：<%= @circle.activity %></li>
 		<li class="list-group-item">年齢層：<%= @circle.age_range %></li>
-		<li class="list-group-item">活動県：<%= @circle.prefecture.name %></li>
-		<li class="list-group-item">活動都市：<%= @circle.city %></li>
+		<li class="list-group-item">活動場所：<%= @circle.prefecture.name %><%= @circle.city %></li>
 	</ul>
 	<h2>所属しているユーザー</h2>
 	<ul class="list-group list-group-flush">
 		<% @users.each do |user| %>
-			<li class="list-group-item"><%= user.nickname %></li>
+			<li class="list-group-item"><%= image_tag user.avatar, class: "user-avatar" if user.avatar.attached?%><%= user.nickname %></li>
 		<% end %>
 	</ul>
 	<h2>活動日誌</h2>
@@ -35,14 +34,16 @@
 		<% end %>
 	</ul>
 	<br>
-	<h2>イベントスケジュール</h2>
-	<%= link_to "新規イベント作成", new_circle_event_path(@circle), class: "btn btn-primary btn-lg" %>
-	<%= month_calendar events: @events do |date, events| %>
-		<%= date %>
-		<% events.each do |event| %>
-			<div>
-				<%= link_to event.title, circle_event_path(@circle,event) %>
-			</div>
+	<% if @circle.users.include?(current_user) %>
+		<h2>イベントスケジュール</h2>
+		<%= link_to "新規イベント作成", new_circle_event_path(@circle), class: "btn btn-primary btn-lg" %>
+		<%= month_calendar events: @events do |date, events| %>
+			<%= date %>
+			<% events.each do |event| %>
+				<div>
+					<%= link_to event.title, circle_event_path(@circle,event) %>
+				</div>
+			<% end %>
 		<% end %>
 	<% end %>
 </div>
