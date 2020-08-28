@@ -18,8 +18,7 @@
 		<li class="list-group-item">ジャンル：<%= @circle.genre.name %></li>
 		<li class="list-group-item">活動日：<%= @circle.activity %></li>
 		<li class="list-group-item">年齢層：<%= @circle.age_range %></li>
-		<li class="list-group-item">活動県：<%= @circle.prefecture.name %></li>
-		<li class="list-group-item">活動都市：<%= @circle.city %></li>
+		<li class="list-group-item">活動場所：<%= @circle.prefecture.name %><%= @circle.city %></li>
 	</ul>
 	<h2>所属しているユーザー</h2>
 	<ul class="list-group list-group-flush">
