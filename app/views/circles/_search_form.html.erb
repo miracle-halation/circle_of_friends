@@ -1,5 +1,5 @@
 <div class="row row-cols-4">
-	<%= search_form_for search, url: circles_search_path, class:"form-row" do |f| %>
+	<%= search_form_for search, url: circles_search_path, class:"form-row search-form" do |f| %>
 		<%= f.label :name_or_phrase_or_description_or_activity_or_age_range_or_city_cont, "キーワード" %>
 		<%= f.text_field :name_or_phrase_or_description_or_activity_or_age_range_or_city_cont, class:"form-control mb-2"%>
 		<div class="col">
